@@ -1,0 +1,241 @@
+{
+ "v": 1,
+ "rev": 3,
+ "updated": "2026-11-23T11:58:14.096Z",
+ "event": {
+  "kicker": "Los Amigos Friendsgiving 2026",
+  "line": "Saturday 28 November, 18:00 at Morrison",
+  "start": "2026-11-28T18:00:00+01:00"
+ },
+ "guests": [
+  {
+   "id": "wayne-ash",
+   "members": [
+    "Wayne",
+    "Ash"
+   ],
+   "note": "We’ve got the turkey (yes, an actual pavo entero!) and stuffing."
+  },
+  {
+   "id": "pall",
+   "members": [
+    "Páll",
+    "Kyla"
+   ]
+  },
+  {
+   "id": "kai",
+   "members": [
+    "Kai",
+    "Maru"
+   ]
+  },
+  {
+   "id": "marbs",
+   "members": [
+    "Marbs",
+    "Chris Oz"
+   ]
+  },
+  {
+   "id": "chris-uk",
+   "members": [
+    "Chris UK",
+    "Sofía"
+   ]
+  },
+  {
+   "id": "nico",
+   "members": [
+    "Nico",
+    "Kate"
+   ]
+  },
+  {
+   "id": "rob-oz",
+   "members": [
+    "Rob Oz"
+   ]
+  },
+  {
+   "id": "jal",
+   "members": [
+    "Jal"
+   ]
+  },
+  {
+   "id": "marti",
+   "members": [
+    "Marti"
+   ]
+  }
+ ],
+ "dishes": [
+  {
+   "id": "turkey",
+   "name": "Roast turkey",
+   "emoji": "🦃",
+   "cat": "main",
+   "by": "wayne-ash",
+   "core": true
+  },
+  {
+   "id": "ham",
+   "name": "Honey-glazed ham",
+   "emoji": "🍖",
+   "cat": "main"
+  },
+  {
+   "id": "stuffing",
+   "name": "Stuffing",
+   "emoji": "🍞",
+   "cat": "side",
+   "by": "wayne-ash",
+   "core": true
+  },
+  {
+   "id": "cranberry",
+   "name": "Cranberry sauce",
+   "emoji": "🍒",
+   "cat": "side",
+   "by": "chris-uk",
+   "core": true
+  },
+  {
+   "id": "roasties",
+   "name": "Roast potatoes",
+   "emoji": "🥔",
+   "cat": "side",
+   "by": "chris-uk"
+  },
+  {
+   "id": "mash",
+   "name": "Mashed potatoes",
+   "emoji": "🧈",
+   "cat": "side",
+   "core": true,
+   "wanted": true
+  },
+  {
+   "id": "gravy",
+   "name": "Gravy",
+   "emoji": "🥣",
+   "cat": "side",
+   "core": true,
+   "wanted": true
+  },
+  {
+   "id": "mac",
+   "name": "Mac and cheese",
+   "emoji": "🧀",
+   "cat": "side",
+   "by": "pall",
+   "core": true,
+   "wanted": true
+  },
+  {
+   "id": "greenbean",
+   "name": "Green bean casserole",
+   "emoji": "🫛",
+   "cat": "side",
+   "core": true,
+   "wanted": true
+  },
+  {
+   "id": "rolls",
+   "name": "Bread rolls",
+   "emoji": "🥖",
+   "cat": "side",
+   "core": true,
+   "wanted": true
+  },
+  {
+   "id": "eggs",
+   "name": "Deviled eggs",
+   "emoji": "🥚",
+   "cat": "side",
+   "core": true,
+   "wanted": true
+  },
+  {
+   "id": "sweetpotato",
+   "name": "Sweet potato casserole",
+   "emoji": "🍠",
+   "cat": "side"
+  },
+  {
+   "id": "cornbread",
+   "name": "Cornbread",
+   "emoji": "🌽",
+   "cat": "side"
+  },
+  {
+   "id": "veg",
+   "name": "Roasted veg",
+   "emoji": "🥕",
+   "cat": "side"
+  },
+  {
+   "id": "salad",
+   "name": "A salad, for balance",
+   "emoji": "🥗",
+   "cat": "side"
+  },
+  {
+   "id": "pumpkinpie",
+   "name": "Pumpkin pie",
+   "emoji": "🥧",
+   "cat": "sweet"
+  },
+  {
+   "id": "applepie",
+   "name": "Apple pie",
+   "emoji": "🍎",
+   "cat": "sweet"
+  },
+  {
+   "id": "pecanpie",
+   "name": "Pecan pie",
+   "emoji": "🌰",
+   "cat": "sweet"
+  },
+  {
+   "id": "oreo",
+   "name": "Oreo balls",
+   "emoji": "🍪",
+   "cat": "sweet",
+   "by": "marbs"
+  },
+  {
+   "id": "lamingtons",
+   "name": "Lamingtons",
+   "emoji": "🥥",
+   "cat": "sweet",
+   "by": "marbs"
+  },
+  {
+   "id": "snacks",
+   "name": "Snacks and nibbles",
+   "emoji": "🥨",
+   "cat": "extra"
+  },
+  {
+   "id": "plates",
+   "name": "Plates and napkins",
+   "emoji": "🍽️",
+   "cat": "extra"
+  },
+  {
+   "id": "spoons",
+   "name": "Serving spoons and cutlery",
+   "emoji": "🥄",
+   "cat": "extra"
+  },
+  {
+   "id": "tubs",
+   "name": "Tubs for leftovers",
+   "emoji": "🥡",
+   "cat": "extra"
+  }
+ ]
+}

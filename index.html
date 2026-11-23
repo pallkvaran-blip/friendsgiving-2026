@@ -1,0 +1,1989 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friendsgiving 2026: who’s bringing what</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
+<style id="potluck-css">
+/* ---------- tokens ---------- */
+:root {
+  --page: #F2B632;
+  --dots: #E5A521;
+  --ink: #2B1409;
+  --ink-soft: #5B3A21;
+  --paper: #FFF6E1;
+  --paper-2: #F7E6BF;
+  --line: #2B1409;
+  --shadow: #2B1409;
+  --cran: #A81E24;
+  --cran-ink: #FFF6E1;
+  --avo: #4E6A25;
+  --avo-wash: #E3ECC8;
+  --pump: #D9601A;
+  --crust: #C98A3B;
+  --cloth: #FFF1DA;
+  --check: rgba(168, 30, 36, .52);
+  --cloth-stitch: rgba(255, 255, 255, .8);
+  --stitch: rgba(43, 20, 9, .28);
+  --plate: #FFFDF6;
+  --plate-rim: #E6D9BC;
+  --side: #2B1409;
+  --side-ink: #FFF6E1;
+  --side-soft: #D6BB92;
+  --hi: #FFD867;
+  --hi-ink: #2B1409;
+  --title-fill: #FFF6E1;
+  --title-stroke: #2B1409;
+  --title-shadow: #A81E24;
+  --field: #FFFDF6;
+  --backdrop: rgba(30, 12, 5, .55);
+  --focus: #2B1409;
+  --font-d: "Caprasimo", "Cooper Black", "Rockwell Extra Bold", Georgia, serif;
+  --font-b: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --tray-h: 0px;
+  --bar-h: 0px;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #1D0D0A;
+    --dots: #2B1511;
+    --ink: #FBE8C4;
+    --ink-soft: #CFB189;
+    --paper: #3A2019;
+    --paper-2: #4A2A20;
+    --line: #0B0403;
+    --shadow: #0B0403;
+    --cran: #E05A60;
+    --cran-ink: #1D0D0A;
+    --avo: #B4CE78;
+    --avo-wash: #2E3A1B;
+    --pump: #F28A45;
+    --crust: #B77A33;
+    --cloth: #5E171B;
+    --check: rgba(0, 0, 0, .3);
+    --cloth-stitch: rgba(251, 232, 196, .32);
+    --stitch: rgba(251, 232, 196, .25);
+    --plate: #F2E7CE;
+    --plate-rim: #D6C7A4;
+    --side: #0F0605;
+    --side-ink: #FBE8C4;
+    --side-soft: #A98C68;
+    --hi: #F2B632;
+    --hi-ink: #2B1409;
+    --title-fill: #F2B632;
+    --title-stroke: #0B0403;
+    --title-shadow: #A81E24;
+    --field: #2A1612;
+    --backdrop: rgba(0, 0, 0, .65);
+    --focus: #FBE8C4;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --page: #1D0D0A;
+  --dots: #2B1511;
+  --ink: #FBE8C4;
+  --ink-soft: #CFB189;
+  --paper: #3A2019;
+  --paper-2: #4A2A20;
+  --line: #0B0403;
+  --shadow: #0B0403;
+  --cran: #E05A60;
+  --cran-ink: #1D0D0A;
+  --avo: #B4CE78;
+  --avo-wash: #2E3A1B;
+  --pump: #F28A45;
+  --crust: #B77A33;
+  --cloth: #5E171B;
+  --check: rgba(0, 0, 0, .3);
+  --cloth-stitch: rgba(251, 232, 196, .32);
+  --stitch: rgba(251, 232, 196, .25);
+  --plate: #F2E7CE;
+  --plate-rim: #D6C7A4;
+  --side: #0F0605;
+  --side-ink: #FBE8C4;
+  --side-soft: #A98C68;
+  --hi: #F2B632;
+  --hi-ink: #2B1409;
+  --title-fill: #F2B632;
+  --title-stroke: #0B0403;
+  --title-shadow: #A81E24;
+  --field: #2A1612;
+  --backdrop: rgba(0, 0, 0, .65);
+  --focus: #FBE8C4;
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--page);
+  background-image: radial-gradient(var(--dots) 1.3px, transparent 1.5px);
+  background-size: 14px 14px;
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-size: 1rem;
+  line-height: 1.45;
+  padding-bottom: calc(var(--bar-h) + 28px);
+  overflow-x: hidden;
+}
+/* keeps page content from showing under a phone's translucent status bar */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 80; background: var(--page); }
+body.dragging { cursor: grabbing; user-select: none; -webkit-user-select: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: 1260px; margin: 0 auto; padding: clamp(14px, 3vw, 34px); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4em;
+  font: 800 .95rem/1.1 var(--font-b);
+  color: var(--ink); background: var(--paper);
+  border: 2px solid var(--line); border-radius: 999px;
+  padding: .62em 1.05em;
+  box-shadow: 2px 3px 0 var(--shadow);
+  cursor: pointer; white-space: nowrap;
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 4px 0 var(--shadow); }
+.btn:active { transform: translate(2px, 3px); box-shadow: 0 0 0 var(--shadow); }
+.btn--small { font-size: .82rem; padding: .5em .85em; }
+.btn--go { background: var(--cran); color: var(--cran-ink); }
+.btn--quiet { background: transparent; border-color: transparent; box-shadow: none; text-decoration: underline; text-underline-offset: 3px; }
+.btn--quiet:hover, .btn--quiet:active { box-shadow: none; transform: none; }
+.btn--danger { color: var(--cran); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding-bottom: clamp(10px, 2vw, 22px); }
+.hero-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.kicker { font-family: var(--font-d); font-size: clamp(1.05rem, 2.2vw, 1.4rem); line-height: 1.1; }
+.hero-tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mode { font-size: .8rem; font-weight: 600; background: var(--paper); color: var(--ink); border: 2px dashed var(--line); border-radius: 999px; padding: .32em .8em; }
+.hero-main { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(16px, 3vw, 40px); align-items: end; margin-top: clamp(8px, 1.6vw, 18px); }
+.title {
+  font-family: var(--font-d); font-weight: 400;
+  font-size: clamp(2.9rem, 9.4vw, 6.2rem); line-height: .92; letter-spacing: .005em;
+  color: var(--title-fill);
+  -webkit-text-stroke: clamp(5px, .085em, 10px) var(--title-stroke);
+  paint-order: stroke fill;
+  text-shadow: .05em .065em 0 var(--title-shadow);
+  padding: .06em .08em .12em 0;
+}
+.when { font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 600; margin-top: .5em; max-width: 34ch; }
+.hero-side { display: grid; justify-items: end; gap: 10px; position: relative; }
+.turkey {
+  width: clamp(76px, 11vw, 124px); aspect-ratio: 1; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--line);
+  box-shadow: 3px 4px 0 var(--shadow);
+  display: grid; place-items: center; cursor: pointer; padding: 0;
+  font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1;
+  transform: rotate(-8deg);
+  position: relative;
+  transition: transform .15s ease;
+}
+.turkey::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 2px dashed var(--stitch); pointer-events: none; }
+.turkey:hover { transform: rotate(-2deg) scale(1.04); }
+.turkey.is-gobbling { animation: gobble .7s ease; }
+@keyframes gobble {
+  0%, 100% { transform: rotate(-8deg) scale(1); }
+  15% { transform: rotate(8deg) scale(1.15); }
+  30% { transform: rotate(-12deg) scale(1.1); }
+  45% { transform: rotate(10deg) scale(1.14); }
+  60% { transform: rotate(-10deg) scale(1.08); }
+  80% { transform: rotate(4deg) scale(1.03); }
+}
+.quip {
+  position: absolute; right: calc(clamp(76px, 11vw, 124px) + 12px); top: 4px;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--line); border-radius: 14px 14px 2px 14px;
+  box-shadow: 2px 3px 0 var(--shadow);
+  padding: .5em .8em; font-weight: 600; font-size: .92rem;
+  width: max-content; max-width: min(250px, 58vw); z-index: 3;
+  animation: pop .18s ease-out;
+}
+@keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.countdown { display: flex; gap: 8px; }
+.tick {
+  min-width: clamp(54px, 7vw, 78px); text-align: center;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--line); border-radius: 12px;
+  box-shadow: 2px 3px 0 var(--shadow);
+  padding: 7px 6px 6px;
+}
+.tick b { display: block; font-family: var(--font-d); font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.tick span { display: block; font-size: .72rem; font-weight: 600; color: var(--ink-soft); margin-top: 3px; }
+.countdown-done { font-family: var(--font-d); font-size: clamp(1.4rem, 3vw, 2rem); background: var(--paper); color: var(--ink); border: 2px solid var(--line); border-radius: 12px; box-shadow: 2px 3px 0 var(--shadow); padding: .35em .7em; }
+
+.leaves { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.leaf { position: absolute; left: 0; will-change: transform; }
+
+/* the headline slides without fading: a fade would show its outline through the letters */
+body.intro .title { animation: slide .7s cubic-bezier(.2, .9, .3, 1.2) both; }
+@keyframes slide { from { transform: translateY(26px); } to { transform: none; } }
+body.intro .when, body.intro .hero-side { animation: rise .7s .12s cubic-bezier(.2, .9, .3, 1.1) both; }
+@keyframes rise { from { transform: translateY(26px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- pie-o-meter ---------- */
+.meter {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.5fr); gap: clamp(12px, 2.4vw, 28px); align-items: center;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--line); border-radius: 22px;
+  box-shadow: 4px 5px 0 var(--shadow);
+  padding: clamp(12px, 2vw, 20px) clamp(14px, 2.4vw, 26px);
+  margin-top: clamp(8px, 1.6vw, 16px);
+}
+.pie { width: clamp(76px, 9vw, 108px); aspect-ratio: 1; flex: none; overflow: visible; filter: drop-shadow(3px 4px 0 var(--shadow)); }
+.pie .crust { fill: var(--crust); stroke: var(--line); stroke-width: 2; }
+.pie .slice { fill: var(--plate); stroke: var(--line); stroke-width: 1.4; stroke-linejoin: round; }
+.pie .slice.is-in { fill: var(--pump); }
+.pie .cream { fill: var(--plate); stroke: var(--line); stroke-width: 1; }
+.meter-big { font-size: clamp(1rem, 1.7vw, 1.2rem); font-weight: 600; line-height: 1.15; }
+.meter-big .num { display: block; font-family: var(--font-d); font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1; }
+.meter-small { font-size: .9rem; color: var(--ink-soft); margin-top: 6px; }
+.meter-need-h { font-size: .9rem; font-weight: 800; }
+.meter-need-l { font-size: .98rem; margin-top: 2px; }
+.meter-need--done > p { font-family: var(--font-d); font-weight: 400; font-size: 1.2rem; }
+
+/* ---------- chips ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: .42em;
+  font: 600 .92rem/1.12 var(--font-b);
+  color: var(--ink); background: var(--paper);
+  border: 2px solid var(--line); border-radius: 999px;
+  padding: .44em .85em .44em .58em;
+  box-shadow: 2px 2px 0 var(--shadow);
+  cursor: grab; white-space: nowrap; text-align: left;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  touch-action: manipulation;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+.chip .e { font-size: 1.3em; line-height: 1; }
+.chip:hover { transform: translate(-1px, -2px); box-shadow: 3px 4px 0 var(--shadow); }
+.chip.is-hand { background: var(--hi); color: var(--hi-ink); animation: wiggle .45s ease-in-out infinite alternate; }
+@keyframes wiggle { from { transform: rotate(-2.5deg) translateY(-2px); } to { transform: rotate(2.5deg) translateY(-2px); } }
+.chip.is-lifted { opacity: .35; border-style: dashed; box-shadow: none; }
+.chip.is-local { border-style: dashed; }
+.chip--claimed { background: var(--avo-wash); font-size: .8rem; white-space: normal; border-radius: 12px; padding: .42em .6em .42em .5em; box-shadow: 1px 2px 0 var(--shadow); }
+.chip.is-lucky { background: var(--hi); color: var(--hi-ink); transform: scale(1.08); }
+
+.ghost {
+  position: fixed; left: 0; top: 0; z-index: 100; pointer-events: none; margin: 0;
+  box-shadow: 6px 9px 0 rgba(0, 0, 0, .28);
+  background: var(--hi); color: var(--hi-ink);
+  animation: none; opacity: 1; border-style: solid;
+  transition: none; will-change: transform;
+}
+
+/* ---------- stage: buffet + table ---------- */
+.stage { display: grid; grid-template-columns: minmax(270px, 330px) minmax(0, 1fr); gap: clamp(16px, 2.2vw, 26px); align-items: start; margin-top: clamp(16px, 2.4vw, 26px); }
+
+.buffet {
+  --focus: var(--side-ink);
+  position: sticky; top: calc(14px + env(safe-area-inset-top, 0px));
+  max-height: calc(100vh - 28px); overflow: auto;
+  scrollbar-width: thin; scrollbar-color: var(--side-soft) transparent;
+  background: var(--side); color: var(--side-ink);
+  border: 2px solid var(--line); border-radius: 22px;
+  box-shadow: 4px 5px 0 var(--shadow);
+  padding: 16px;
+  z-index: 30;
+}
+.buffet.is-over { outline: 4px dashed var(--hi); outline-offset: -8px; }
+.buffet-head { margin-bottom: 14px; }
+.buffet-title h2 { font-family: var(--font-d); font-weight: 400; font-size: 1.5rem; line-height: 1.1; }
+.hint { font-size: .86rem; color: var(--side-soft); margin-top: 4px; }
+.buffet-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.only-narrow { display: none; }
+.buffet-list { display: grid; gap: 12px; }
+.group h3 { font: 800 .8rem/1.2 var(--font-b); color: var(--side-soft); margin-bottom: 6px; }
+.group .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.bare { font-size: .95rem; color: var(--side-soft); }
+
+.hand {
+  background: var(--hi); color: var(--hi-ink);
+  border: 2px solid var(--line); border-radius: 16px;
+  padding: 10px 12px;
+  display: grid; gap: 6px;
+}
+.hand-what { font-family: var(--font-d); font-size: 1.15rem; line-height: 1.15; }
+.hand-how { font-size: .88rem; font-weight: 600; }
+.hand-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+.hand .btn { color: #2B1409; background: #FFF6E1; }
+
+.table {
+  position: relative;
+  background-color: var(--cloth);
+  background-image:
+    linear-gradient(90deg, var(--check) 50%, transparent 50%),
+    linear-gradient(var(--check) 50%, transparent 50%);
+  background-size: 44px 44px;
+  border: 2px solid var(--line); border-radius: 26px;
+  box-shadow: 5px 6px 0 var(--shadow);
+  padding: clamp(14px, 2.2vw, 26px);
+}
+.table::after { content: ""; position: absolute; inset: 7px; border: 2px dashed var(--cloth-stitch); border-radius: 19px; pointer-events: none; }
+.table-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; position: relative; z-index: 1; }
+.table-head h2 {
+  font-family: var(--font-d); font-weight: 400; font-size: 1.4rem; line-height: 1.1;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--line); border-radius: 999px;
+  box-shadow: 2px 3px 0 var(--shadow);
+  padding: .22em .75em .26em; transform: rotate(-1.5deg);
+}
+.table-tip { flex: 1 1 100%; font-size: .82rem; font-weight: 600; line-height: 1.3; background: var(--paper); color: var(--ink); border: 2px solid var(--line); border-radius: 12px; padding: .45em .8em; max-width: 60ch; }
+.seats { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); grid-auto-flow: dense; gap: 16px; align-items: start; position: relative; z-index: 1; }
+
+.seat {
+  position: relative;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--line); border-radius: 18px;
+  box-shadow: 3px 4px 0 var(--shadow);
+  padding: 14px 10px 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.seat::before { content: ""; position: absolute; inset: 5px; border: 1.5px dashed var(--stitch); border-radius: 12px; pointer-events: none; }
+.seat:nth-child(3n+1) { transform: rotate(-.7deg); }
+.seat:nth-child(3n+2) { transform: rotate(.6deg); }
+.seat.is-local { border-style: dashed; }
+.seat.is-lifted-seat { opacity: .45; }
+/* two or more people sharing a plate get a double-width placemat */
+.seat--duo { grid-column: span 2; flex-direction: row; align-items: center; gap: 14px; text-align: left; padding: 14px 16px 14px 12px; }
+.seat--duo .seat-main { flex: 0 0 42%; width: auto; }
+.seat--duo .seat-body { flex: 1 1 0; min-width: 0; align-items: flex-start; }
+.seat--duo .haul { justify-content: flex-start; }
+.seat-body { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; position: relative; z-index: 1; }
+.seat-main {
+  background: none; border: 0; padding: 0; margin: 0; cursor: pointer;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; touch-action: manipulation;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%;
+  border-radius: 12px; position: relative; z-index: 1;
+}
+.plate {
+  position: relative; display: block;
+  width: clamp(88px, 62%, 116px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, var(--plate) 0 56%, var(--plate-rim) 57% 60%, var(--plate) 61% 100%);
+  border: 2px solid var(--line);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, .12);
+  font-size: 1rem;
+  transition: transform .15s ease;
+}
+.bite { position: absolute; transform: translate(-50%, -50%); line-height: 1; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .14)); }
+.bite--none { left: 50%; top: 50%; font-size: 1.9em; opacity: .28; filter: grayscale(1); }
+.more { position: absolute; right: -6px; bottom: -4px; background: var(--paper); color: var(--ink); border: 2px solid var(--line); border-radius: 999px; font-size: .72rem; font-weight: 800; padding: .1em .45em; }
+.namecard { font-family: var(--font-d); font-size: 1.12rem; line-height: 1.1; overflow-wrap: anywhere; }
+.quote { font-size: .8rem; font-style: italic; color: var(--ink-soft); line-height: 1.3; position: relative; z-index: 1; }
+.haul { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; position: relative; z-index: 1; }
+.none { font-size: .8rem; color: var(--ink-soft); position: relative; z-index: 1; }
+
+.seat.is-over { transform: translateY(-5px) rotate(-1.2deg) scale(1.04); box-shadow: 6px 9px 0 var(--shadow); z-index: 2; }
+.seat.is-over .plate { transform: scale(1.1); box-shadow: 0 0 0 5px var(--hi), 0 3px 0 rgba(0, 0, 0, .12); }
+body.has-hand .seat { cursor: pointer; outline: 3px dashed var(--hi); outline-offset: 2px; }
+body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
+.seat.just-fed .plate { animation: fed .5s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes fed { 0% { transform: scale(.82); } 55% { transform: scale(1.16) rotate(4deg); } 100% { transform: scale(1); } }
+
+/* ---------- footer ---------- */
+.foot { margin-top: clamp(18px, 3vw, 34px); display: grid; gap: 10px; justify-items: start; }
+.foot-note, .foot-how { font-size: .9rem; max-width: 62ch; }
+.foot-note { color: var(--ink-soft); }
+
+/* ---------- save bar ---------- */
+.bar {
+  position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+  z-index: 40; width: min(640px, calc(100% - 24px));
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--line); border-radius: 18px;
+  box-shadow: 4px 5px 0 var(--shadow);
+  padding: 10px 12px 10px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px 14px; flex-wrap: wrap;
+}
+.bar-msg { font-size: .92rem; flex: 1 1 220px; min-width: 0; }
+.bar-acts { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.spin { display: inline-block; width: 1em; height: 1em; border: 3px solid var(--stitch); border-top-color: var(--cran); border-radius: 50%; vertical-align: -.15em; margin-right: .4em; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- toasts ---------- */
+.toasts { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); z-index: 90; display: grid; gap: 8px; justify-items: center; width: min(520px, calc(100% - 24px)); pointer-events: none; }
+.toast { background: var(--side); color: var(--side-ink); border: 2px solid var(--line); border-radius: 14px; box-shadow: 3px 4px 0 rgba(0, 0, 0, .3); padding: .6em 1em; font-weight: 600; font-size: .95rem; animation: pop .18s ease-out; text-align: center; }
+
+/* ---------- dialog ---------- */
+.dlg {
+  border: 2px solid var(--line); border-radius: 22px;
+  background: var(--paper); color: var(--ink);
+  box-shadow: 6px 7px 0 var(--shadow);
+  padding: 0; width: min(470px, calc(100vw - 24px)); max-height: calc(100vh - 32px); overflow: auto;
+}
+.dlg::backdrop { background: var(--backdrop); }
+.dlg-body { padding: 20px; display: grid; gap: 14px; }
+.dlg-title { font-family: var(--font-d); font-weight: 400; font-size: 1.6rem; line-height: 1.1; }
+.dlg-sub { font-size: .92rem; color: var(--ink-soft); margin-top: -8px; }
+.field { display: grid; gap: 6px; font-size: .9rem; font-weight: 800; }
+.field input, .field select {
+  font-size: 1rem; font-weight: 400;
+  background: var(--field); color: var(--ink);
+  border: 2px solid var(--line); border-radius: 12px;
+  padding: .6em .7em; width: 100%;
+}
+.emoji-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px; }
+.emoji-btn { font-size: 1.4rem; line-height: 1; aspect-ratio: 1; background: var(--field); border: 2px solid transparent; border-radius: 10px; cursor: pointer; padding: 0; }
+.emoji-btn[aria-checked="true"] { border-color: var(--line); background: var(--hi); box-shadow: 2px 2px 0 var(--shadow); }
+.names { display: grid; gap: 8px; }
+.name-row { display: flex; gap: 8px; align-items: center; }
+.name-row input, .name-row select { flex: 1 1 auto; min-width: 0; }
+.name-row .btn { flex: 0 0 auto; }
+.err { color: var(--cran); font-weight: 800; font-size: .9rem; }
+.dlg-acts { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.dlg-list { display: grid; gap: 8px; }
+.dlg-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--avo-wash); border: 2px solid var(--line); border-radius: 12px; padding: 6px 8px 6px 12px; font-weight: 600; font-size: .95rem; }
+.reel { display: grid; justify-items: center; gap: 6px; padding: 8px 0 2px; text-align: center; }
+.reel-e { font-size: 5rem; line-height: 1.1; width: 2.2em; aspect-ratio: 1; display: grid; place-items: center; background: var(--plate); border: 2px solid var(--line); border-radius: 50%; box-shadow: 3px 4px 0 var(--shadow); }
+.reel-e.is-landed { animation: fed .5s cubic-bezier(.3, 1.6, .5, 1); }
+.reel-n { font-family: var(--font-d); font-size: 1.5rem; line-height: 1.15; min-height: 2.4em; display: grid; place-items: center; }
+.copybox { width: 100%; min-height: 180px; font: 400 .95rem/1.4 var(--font-b); background: var(--field); color: var(--ink); border: 2px solid var(--line); border-radius: 12px; padding: 10px; resize: vertical; }
+
+.confetto { position: fixed; left: 0; top: 0; z-index: 95; pointer-events: none; line-height: 1; will-change: transform; }
+
+/* ---------- narrow: the buffet becomes a tray at the bottom ---------- */
+@media (max-width: 899px) {
+  body { padding-bottom: calc(var(--tray-h) + var(--bar-h) + 24px); }
+  .hero-bar { flex-wrap: wrap; gap: 8px 12px; }
+  .hero-tools { display: contents; }
+  .hero-tools .mode { order: 3; }
+  .hero-tools .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .kicker { flex: 1 1 0; min-width: 0; }
+  .hero-main { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .hero-side { justify-items: start; grid-template-columns: auto auto; align-items: center; justify-content: start; gap: 12px; }
+  .hero-side .turkey { order: 2; }
+  .quip { right: auto; left: 0; top: auto; bottom: calc(100% + 6px); border-radius: 14px 14px 14px 2px; }
+  .meter { grid-template-columns: auto minmax(0, 1fr); }
+  .meter-need { grid-column: 1 / -1; }
+  .stage { display: block; }
+  .buffet {
+    position: fixed; left: 0; right: 0; bottom: 0; top: auto;
+    max-height: none; overflow: visible;
+    border-radius: 20px 20px 0 0; border-bottom: 0; border-left: 0; border-right: 0;
+    box-shadow: 0 -4px 0 rgba(0, 0, 0, .22);
+    padding: 10px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+  .buffet-head { margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .buffet-title { flex: 1 1 auto; min-width: 0; }
+  .buffet-title h2 { font-size: 1.1rem; }
+  .hint { font-size: .76rem; margin-top: 1px; }
+  .buffet-acts { margin-top: 0; flex-wrap: nowrap; gap: 6px; flex: 0 0 auto; }
+  .buffet-acts .btn { padding: .5em .7em; }
+  .buffet-acts .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .only-narrow { display: inline-flex; }
+  .buffet-list { display: flex; gap: 14px; overflow-x: auto; overflow-y: hidden; padding: 4px 2px 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .buffet-list::-webkit-scrollbar { display: none; }
+  .group { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+  .group h3 { margin: 0; white-space: nowrap; }
+  .group .chips { flex-wrap: nowrap; }
+  .buffet.is-open .buffet-list { flex-direction: column; align-items: stretch; overflow-x: hidden; overflow-y: auto; max-height: 46vh; gap: 12px; padding-bottom: 10px; }
+  .buffet.is-open .group { display: block; }
+  .buffet.is-open .group h3 { margin-bottom: 6px; }
+  .buffet.is-open .group .chips { flex-wrap: wrap; }
+  .hand { width: 100%; grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: 8px 10px; }
+  .hand-what { font-size: 1rem; }
+  .hand-how { grid-column: 1; font-size: .8rem; }
+  .hand-acts { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+  .bar { bottom: calc(var(--tray-h) + 8px); padding: 8px 10px 8px 12px; border-radius: 16px; }
+  .bar-msg { font-size: .84rem; line-height: 1.3; }
+  .seats { grid-template-columns: repeat(auto-fill, minmax(146px, 1fr)); gap: 12px; }
+  .table { padding: 14px 12px 16px; background-size: 36px 36px; }
+}
+@media (max-width: 420px) {
+  .tick { min-width: 0; flex: 1 1 0; padding-left: 4px; padding-right: 4px; }
+  .countdown { gap: 6px; }
+  .seats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .seat { padding: 12px 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="application/json" id="potluck-state">{"v":1,"rev":3,"updated":"2026-11-23T12:13:16.763Z","event":{"kicker":"Los Amigos Friendsgiving 2026","line":"Saturday 28 November, 18:00 at Morrison","start":"2026-11-28T18:00:00+01:00"},"guests":[{"id":"wayne-ash","members":["Wayne","Ash"],"note":"We’ve got the turkey (yes, an actual pavo entero!) and stuffing."},{"id":"pall","members":["Páll","Kyla"]},{"id":"kai","members":["Kai","Maru"]},{"id":"marbs","members":["Marbs","Chris Oz"]},{"id":"chris-uk","members":["Chris UK","Sofía"]},{"id":"nico","members":["Nico","Kate"]},{"id":"rob-oz","members":["Rob Oz"]},{"id":"jal","members":["Jal"]},{"id":"marti","members":["Marti"]}],"dishes":[{"id":"turkey","name":"Roast turkey","emoji":"🦃","cat":"main","by":"wayne-ash","core":true},{"id":"ham","name":"Honey-glazed ham","emoji":"🍖","cat":"main"},{"id":"stuffing","name":"Stuffing","emoji":"🍞","cat":"side","by":"wayne-ash","core":true},{"id":"cranberry","name":"Cranberry sauce","emoji":"🍒","cat":"side","by":"chris-uk","core":true},{"id":"roasties","name":"Roast potatoes","emoji":"🥔","cat":"side","by":"chris-uk"},{"id":"mash","name":"Mashed potatoes","emoji":"🧈","cat":"side","core":true,"wanted":true},{"id":"gravy","name":"Gravy","emoji":"🥣","cat":"side","core":true,"wanted":true},{"id":"mac","name":"Mac and cheese","emoji":"🧀","cat":"side","by":"pall","core":true,"wanted":true},{"id":"greenbean","name":"Green bean casserole","emoji":"🫛","cat":"side","core":true,"wanted":true},{"id":"rolls","name":"Bread rolls","emoji":"🥖","cat":"side","core":true,"wanted":true},{"id":"eggs","name":"Deviled eggs","emoji":"🥚","cat":"side","core":true,"wanted":true},{"id":"sweetpotato","name":"Sweet potato casserole","emoji":"🍠","cat":"side"},{"id":"cornbread","name":"Cornbread","emoji":"🌽","cat":"side"},{"id":"veg","name":"Roasted veg","emoji":"🥕","cat":"side"},{"id":"salad","name":"A salad, for balance","emoji":"🥗","cat":"side"},{"id":"pumpkinpie","name":"Pumpkin pie","emoji":"🥧","cat":"sweet"},{"id":"applepie","name":"Apple pie","emoji":"🍎","cat":"sweet"},{"id":"pecanpie","name":"Pecan pie","emoji":"🌰","cat":"sweet"},{"id":"oreo","name":"Oreo balls","emoji":"🍪","cat":"sweet","by":"marbs"},{"id":"lamingtons","name":"Lamingtons","emoji":"🥥","cat":"sweet","by":"marbs"},{"id":"snacks","name":"Snacks and nibbles","emoji":"🥨","cat":"extra"},{"id":"plates","name":"Plates and napkins","emoji":"🍽️","cat":"extra"},{"id":"spoons","name":"Serving spoons and cutlery","emoji":"🥄","cat":"extra"},{"id":"tubs","name":"Tubs for leftovers","emoji":"🥡","cat":"extra"}]}</script>
+<script id="potluck-app">
+(function () {
+  'use strict';
+
+  /* =====================================================================
+     Document template. The build step and the Save button both use this,
+     so a saved page is the same page with new data in it.
+     ===================================================================== */
+  var TITLE = 'Friendsgiving 2026: who’s bringing what';
+  var FONTS = [
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">'
+  ].join('\n');
+
+  function safeJson(o) {
+    return JSON.stringify(o)
+      .replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')
+      .replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+  }
+
+  function buildDocument(p) {
+    var open = '<' + 'script', close = '<' + '/script>';
+    return '<!doctype html>\n' +
+      '<html lang="en">\n<head>\n' +
+      '<meta charset="utf-8">\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
+      '<title>' + TITLE + '</title>\n' +
+      FONTS + '\n' +
+      '<style id="potluck-css">' + p.css + '</style>\n' +
+      '</head>\n<body>\n' +
+      '<div id="root"></div>\n' +
+      open + ' type="application/json" id="potluck-state">' + safeJson(p.state) + close + '\n' +
+      open + ' id="potluck-app">' + p.app + close + '\n' +
+      '</body>\n</html>\n';
+  }
+
+  if (typeof document === 'undefined') { globalThis.__potluckBuild = buildDocument; return; }
+
+  /* =====================================================================
+     Small helpers
+     ===================================================================== */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function str(v, max) { return typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, max) : ''; }
+  function uid(p) { return p + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36); }
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function idx(list) { var m = {}; list.forEach(function (x) { m[x.id] = x; }); return m; }
+  function mq(q) { try { return window.matchMedia(q); } catch (e) { return { matches: false }; } }
+
+  var reduceMotion = mq('(prefers-reduced-motion: reduce)').matches;
+  var coarse = mq('(pointer: coarse)').matches;
+  var mqNarrow = mq('(max-width: 899px)');
+
+  var SS_KEY = 'potluck:stash:v1', LS_KEY = 'potluck:prefs:v1';
+  function ssGet() { try { return JSON.parse(sessionStorage.getItem(SS_KEY) || 'null') || {}; } catch (e) { return {}; } }
+  function ssSet(v) { try { sessionStorage.setItem(SS_KEY, JSON.stringify(v)); } catch (e) { /* storage can be unavailable */ } }
+  function lsGet() { try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null') || {}; } catch (e) { return {}; } }
+  function lsSet(v) { try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch (e) { /* storage can be unavailable */ } }
+
+  var CATS = [
+    { id: 'main', label: 'Mains' },
+    { id: 'side', label: 'Sides' },
+    { id: 'sweet', label: 'Desserts' },
+    { id: 'extra', label: 'Bits and bobs' }
+  ];
+  var CAT_IDS = { main: 1, side: 1, sweet: 1, extra: 1 };
+  var EMOJI_CHOICES = ['🍲', '🥘', '🍛', '🥗', '🥧', '🍰', '🧁', '🍮', '🍪', '🍫', '🥖', '🧀', '🥔', '🌽', '🥕', '🍄', '🍗', '🍖', '🐟', '🦐', '🥟', '🌮', '🍝', '🍚', '🍅', '🥑', '🍋', '🌶️', '🥜', '🍯'];
+  var LEAVES = ['🍂', '🍁', '🍂', '🍁', '🌰'];
+  var PARTY = ['🍂', '🍁', '✨', '🥧', '🌽', '🧡', '🍗'];
+
+  /* =====================================================================
+     State. BASE is what is saved in the page. `work` is BASE plus this
+     person's changes that are not saved yet.
+     ===================================================================== */
+  var MAX_MEMBERS = 6;
+  function splitNames(name) {
+    return String(name || '').split(/\s*(?:&|\+|,|\band\b|\by\b)\s*/i).map(function (x) { return str(x, 24); }).filter(Boolean);
+  }
+  /* A seat holds one or more people. Older saves stored one name and a head count. */
+  function cleanMembers(members, name, n) {
+    var list = Array.isArray(members)
+      ? members.map(function (x) { return str(x, 24); }).filter(Boolean)
+      : (+n > 1 ? splitNames(name) : [str(name, 24)].filter(Boolean));
+    return list.slice(0, MAX_MEMBERS);
+  }
+  function seatName(m) { return m.length <= 2 ? m.join(' & ') : m.slice(0, -1).join(', ') + ' & ' + m[m.length - 1]; }
+  function mkGuest(id, members, note) { return { id: id, members: members, name: seatName(members), n: members.length, note: str(note, 120) }; }
+  function setMembers(g, members) { g.members = members; g.name = seatName(members); g.n = members.length; }
+  function sameList(a, b) { return a.length === b.length && a.every(function (x, i) { return x === b[i]; }); }
+  function indexOfG(s, id) { for (var i = 0; i < s.guests.length; i++) if (s.guests[i].id === id) return i; return -1; }
+
+  function normalize(s) {
+    s = s && typeof s === 'object' ? s : {};
+    var ev = s.event && typeof s.event === 'object' ? s.event : {};
+    var out = {
+      v: 1, rev: +s.rev || 0, updated: str(s.updated, 40),
+      event: { kicker: str(ev.kicker, 80), line: str(ev.line, 140), start: str(ev.start, 40) },
+      guests: [], dishes: []
+    };
+    var seen = {};
+    (Array.isArray(s.guests) ? s.guests : []).forEach(function (g) {
+      if (!g || typeof g !== 'object') return;
+      var id = str(g.id, 40), members = cleanMembers(g.members, g.name, g.n);
+      if (!id || !members.length || seen['g' + id]) return;
+      seen['g' + id] = 1;
+      out.guests.push(mkGuest(id, members, g.note));
+    });
+    (Array.isArray(s.dishes) ? s.dishes : []).forEach(function (d) {
+      if (!d || typeof d !== 'object') return;
+      var id = str(d.id, 40), name = str(d.name, 50);
+      if (!id || !name || seen['d' + id]) return;
+      seen['d' + id] = 1;
+      var by = str(d.by, 40);
+      out.dishes.push({
+        id: id, name: name, emoji: str(d.emoji, 8) || '🍲', cat: CAT_IDS[d.cat] ? d.cat : 'side',
+        by: by && seen['g' + by] ? by : null, core: !!d.core, wanted: !!d.wanted, custom: !!d.custom
+      });
+    });
+    return out;
+  }
+  function readBase() {
+    var raw = {};
+    try { raw = JSON.parse(document.getElementById('potluck-state').textContent); } catch (e) { raw = {}; }
+    return normalize(raw);
+  }
+  function findG(s, id) { for (var i = 0; i < s.guests.length; i++) if (s.guests[i].id === id) return s.guests[i]; return null; }
+  function findD(s, id) { for (var i = 0; i < s.dishes.length; i++) if (s.dishes[i].id === id) return s.dishes[i]; return null; }
+  function dishesOf(s, gid) { return s.dishes.filter(function (d) { return d.by === gid; }); }
+  function unclaimed(s) { return s.dishes.filter(function (d) { return !d.by; }); }
+  function coreDone(s) { var c = s.dishes.filter(function (d) { return d.core; }); return c.length > 0 && c.every(function (d) { return !!d.by; }); }
+
+  /* One change, applied to a state. Returns 'applied', 'noop' (already true) or 'conflict'. */
+  function applyOp(s, op) {
+    var d, g, m, i;
+    switch (op && op.t) {
+      case 'claim':
+        d = findD(s, op.dish); g = findG(s, op.to);
+        if (!d || !g) return 'conflict';
+        if (d.by === op.to) return 'noop';
+        if ((d.by || null) !== (op.prev || null)) return 'conflict';
+        d.by = op.to; return 'applied';
+      case 'unclaim':
+        d = findD(s, op.dish);
+        if (!d || !d.by) return 'noop';
+        if (d.by !== op.prev) return 'conflict';
+        d.by = null; return 'applied';
+      case 'addDish':
+        if (!op.d || findD(s, op.d.id)) return 'noop';
+        s.dishes.push({ id: str(op.d.id, 40), name: str(op.d.name, 50), emoji: str(op.d.emoji, 8) || '🍲', cat: CAT_IDS[op.d.cat] ? op.d.cat : 'side', by: null, core: false, wanted: false, custom: true });
+        return 'applied';
+      case 'delDish':
+        d = findD(s, op.dish);
+        if (!d) return 'noop';
+        if (!d.custom) return 'conflict';
+        s.dishes = s.dishes.filter(function (x) { return x.id !== op.dish; });
+        return 'applied';
+      case 'addGuest':
+        if (!op.g || findG(s, op.g.id)) return 'noop';
+        m = cleanMembers(op.g.members, op.g.name, op.g.n);
+        if (!m.length || !str(op.g.id, 40)) return 'noop';
+        g = mkGuest(str(op.g.id, 40), m, '');
+        i = op.after ? indexOfG(s, op.after) : -1;
+        if (i >= 0) s.guests.splice(i + 1, 0, g); else s.guests.push(g);
+        return 'applied';
+      case 'members':
+        g = findG(s, op.guest);
+        if (!g) return 'conflict';
+        m = cleanMembers(op.members);
+        if (!m.length || sameList(g.members, m)) return 'noop';
+        if (Array.isArray(op.prev) && !sameList(g.members, cleanMembers(op.prev))) return 'conflict';
+        setMembers(g, m); return 'applied';
+      case 'delGuest':
+        g = findG(s, op.guest);
+        if (!g) return 'noop';
+        s.guests = s.guests.filter(function (x) { return x.id !== op.guest; });
+        s.dishes.forEach(function (x) { if (x.by === op.guest) x.by = null; });
+        return 'applied';
+      case 'note':
+        g = findG(s, op.guest);
+        if (!g) return 'conflict';
+        if ((g.note || '') === (op.text || '')) return 'noop';
+        g.note = str(op.text, 120); return 'applied';
+    }
+    return 'noop';
+  }
+
+  /* The smallest list of changes that turns `base` into `w`. */
+  function canonicalOps(base, w) {
+    var out = [], bG = idx(base.guests), wG = idx(w.guests), bD = idx(base.dishes), wD = idx(w.dishes);
+    w.guests.forEach(function (g, i) {
+      if (!bG[g.id]) out.push({ t: 'addGuest', g: { id: g.id, members: g.members.slice() }, after: i ? w.guests[i - 1].id : null });
+    });
+    w.dishes.forEach(function (d) { if (!bD[d.id]) out.push({ t: 'addDish', d: { id: d.id, name: d.name, emoji: d.emoji, cat: d.cat } }); });
+    w.guests.forEach(function (g) {
+      var b = bG[g.id];
+      if (b && !sameList(b.members, g.members)) out.push({ t: 'members', guest: g.id, members: g.members.slice(), prev: b.members.slice() });
+    });
+    w.dishes.forEach(function (d) {
+      var was = bD[d.id] ? (bD[d.id].by || null) : null, now = d.by || null;
+      if (was === now) return;
+      if (now) out.push({ t: 'claim', dish: d.id, to: now, prev: was });
+      else out.push({ t: 'unclaim', dish: d.id, prev: was });
+    });
+    w.guests.forEach(function (g) {
+      var was = bG[g.id] ? (bG[g.id].note || '') : '';
+      if ((g.note || '') !== was) out.push({ t: 'note', guest: g.id, text: g.note || '' });
+    });
+    base.dishes.forEach(function (d) { if (!wD[d.id]) out.push({ t: 'delDish', dish: d.id }); });
+    base.guests.forEach(function (g) { if (!wG[g.id]) out.push({ t: 'delGuest', guest: g.id }); });
+    return out;
+  }
+
+  var BASE = readBase();
+  var stash = ssGet();
+  var prefs = lsGet();
+  var work = clone(BASE);
+  var ops = [];
+
+  function gName(id) { var g = findG(work, id) || findG(BASE, id); return g ? g.name : 'someone'; }
+  function dLabel(id) { var d = findD(work, id) || findD(BASE, id); return d ? d.emoji + ' ' + d.name : 'a dish'; }
+  function describe(op) {
+    var g, b;
+    switch (op.t) {
+      case 'addGuest':
+        g = findG(work, op.g.id);
+        if (!g) return '';
+        return g.members.every(function (m) { return BASE.guests.some(function (x) { return x.members.indexOf(m) >= 0; }); })
+          ? g.name + ' gets a separate seat' : 'Add ' + g.name + ' to the table';
+      case 'members': return '“' + seatName(op.prev || []) + '” becomes “' + seatName(op.members) + '”';
+      case 'addDish': return 'New dish: ' + op.d.emoji + ' ' + op.d.name;
+      case 'claim':
+        g = findG(work, op.to); b = op.prev ? findG(BASE, op.prev) : null;
+        /* the same people on a shared seat: nothing new to report */
+        if (g && b && b.members.every(function (m) { return g.members.indexOf(m) >= 0; })) return '';
+        return gName(op.to) + (g && g.n > 1 ? ' bring ' : ' brings ') + dLabel(op.dish) + (op.prev ? ' (instead of ' + gName(op.prev) + ')' : '');
+      case 'unclaim': return dLabel(op.dish) + ' goes back on the buffet (was ' + gName(op.prev) + ')';
+      case 'note': return gName(op.guest) + (op.text ? ' says: “' + op.text + '”' : ': remove the note');
+      case 'delDish': return 'Take ' + dLabel(op.dish) + ' off the list';
+      case 'delGuest':
+        b = findG(BASE, op.guest);
+        if (!b) return '';
+        /* they moved to a shared seat, which is already listed */
+        if (b.members.every(function (m) { return work.guests.some(function (x) { return x.members.indexOf(m) >= 0; }); })) return '';
+        return 'Remove ' + b.name + ' from the table';
+    }
+    return '';
+  }
+
+  /* Puts a saved board in place and replays this person's unsaved changes on top of it.
+     Returns a line for each change that no longer fits. */
+  function rebase(nextBase, pending) {
+    var lost = [];
+    BASE = nextBase; work = clone(BASE);
+    (Array.isArray(pending) ? pending : []).forEach(function (op) {
+      var r;
+      try { r = applyOp(work, op); } catch (e) { r = 'noop'; }
+      if (r === 'conflict' && (op.t === 'claim' || op.t === 'unclaim')) {
+        var d = findD(work, op.dish);
+        if (d) lost.push(d.emoji + ' ' + d.name + (d.by ? ' went to ' + gName(d.by) + ' in the meantime.' : ' changed in the meantime.'));
+      }
+    });
+    ops = canonicalOps(BASE, work);
+    return lost;
+  }
+  var notices = rebase(BASE, stash.ops);
+
+  var mode = 'pending';        // 'pending' | 'writer' | 'guest'
+  var artifactNs = null;
+  var saving = false, saveError = '', afterConflict = false, dirty = false;
+  var hand = null;             // id of the dish picked up by tap
+  var buffetOpen = false;
+  var soundOn = prefs.sound !== false;
+  var suppressClickUntil = 0;
+
+  function isLocalDish(d) { var b = findD(BASE, d.id); return !b || (b.by || null) !== (d.by || null); }
+  function isNewGuest(g) { return !findG(BASE, g.id); }
+  function isLocalGuest(g) { var b = findG(BASE, g.id); return !b || !sameList(b.members, g.members); }
+  function stashNow(extra) {
+    var o = { ops: ops, seen: true }, k;
+    if (extra) for (k in extra) o[k] = extra[k];
+    ssSet(o);
+  }
+
+  /* =====================================================================
+     Sound: a few synthesized blips. No audio files.
+     ===================================================================== */
+  var actx = null;
+  function ac() {
+    if (!soundOn) return null;
+    try {
+      if (!actx) { var C = window.AudioContext || window.webkitAudioContext; if (!C) return null; actx = new C(); }
+      if (actx.state === 'suspended') actx.resume();
+      return actx;
+    } catch (e) { return null; }
+  }
+  function tone(freq, t0, dur, type, vol, slideTo) {
+    var a = ac(); if (!a) return;
+    try {
+      var o = a.createOscillator(), g = a.createGain(), at = a.currentTime + t0;
+      o.type = type || 'sine';
+      o.frequency.setValueAtTime(freq, at);
+      if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, at + dur);
+      g.gain.setValueAtTime(0.0001, at);
+      g.gain.exponentialRampToValueAtTime(vol || 0.1, at + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+      o.connect(g); g.connect(a.destination);
+      o.start(at); o.stop(at + dur + 0.03);
+    } catch (e) { /* sound is a nicety */ }
+  }
+  var sfx = {
+    pick: function () { tone(520, 0, 0.09, 'triangle', 0.09, 820); },
+    drop: function () { tone(660, 0, 0.1, 'triangle', 0.11, 440); tone(880, 0.09, 0.18, 'sine', 0.09); },
+    back: function () { tone(420, 0, 0.14, 'triangle', 0.08, 260); },
+    tick: function () { tone(1150, 0, 0.03, 'square', 0.025); },
+    fanfare: function () { [523, 659, 784, 1047].forEach(function (f, i) { tone(f, i * 0.09, 0.24, 'triangle', 0.1); }); },
+    gobble: function () { for (var i = 0; i < 9; i++) tone(540 - i * 22 + (i % 2 ? 70 : 0), i * 0.062, 0.05, 'sawtooth', 0.06, 300 - i * 8); }
+  };
+
+  /* =====================================================================
+     Confetti and leaves
+     ===================================================================== */
+  function burst(x, y, n, set) {
+    if (reduceMotion || !document.body.animate) return;
+    for (var i = 0; i < n; i++) {
+      var s = document.createElement('span');
+      s.className = 'confetto'; s.setAttribute('aria-hidden', 'true');
+      s.textContent = set[i % set.length];
+      s.style.fontSize = Math.round(rnd(14, 30)) + 'px';
+      document.body.appendChild(s);
+      var a = Math.random() * Math.PI * 2, r = rnd(60, 170), dx = Math.cos(a) * r, dy = Math.sin(a) * r - 40, rot = rnd(-360, 360);
+      var anim = s.animate([
+        { transform: 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%) scale(.3) rotate(0deg)', opacity: 1 },
+        { transform: 'translate(' + (x + dx) + 'px,' + (y + dy) + 'px) translate(-50%,-50%) scale(1) rotate(' + (rot * 0.6) + 'deg)', opacity: 1, offset: 0.55 },
+        { transform: 'translate(' + (x + dx * 1.15) + 'px,' + (y + dy + 90) + 'px) translate(-50%,-50%) scale(.9) rotate(' + rot + 'deg)', opacity: 0 }
+      ], { duration: rnd(900, 1400), easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'forwards' });
+      anim.onfinish = (function (el) { return function () { el.remove(); }; })(s);
+    }
+  }
+  function rain(n) {
+    if (reduceMotion || !document.body.animate) return;
+    var w = window.innerWidth, h = window.innerHeight;
+    for (var i = 0; i < n; i++) {
+      var s = document.createElement('span');
+      s.className = 'confetto'; s.setAttribute('aria-hidden', 'true');
+      s.textContent = PARTY[i % PARTY.length];
+      s.style.fontSize = Math.round(rnd(18, 36)) + 'px';
+      document.body.appendChild(s);
+      var x = rnd(0, w), sway = rnd(-80, 80), rot = rnd(-540, 540);
+      var anim = s.animate([
+        { transform: 'translate(' + x + 'px,-40px) rotate(0deg)', opacity: 1 },
+        { transform: 'translate(' + (x + sway) + 'px,' + (h * 0.6) + 'px) rotate(' + (rot * 0.6) + 'deg)', opacity: 1, offset: 0.7 },
+        { transform: 'translate(' + (x + sway * 1.3) + 'px,' + (h + 60) + 'px) rotate(' + rot + 'deg)', opacity: 0 }
+      ], { duration: rnd(1900, 3300), delay: rnd(0, 900), easing: 'cubic-bezier(.3,.2,.6,1)', fill: 'both' });
+      anim.onfinish = (function (el) { return function () { el.remove(); }; })(s);
+    }
+  }
+  function gust() {
+    var box = $('#leaves');
+    if (reduceMotion || !box || !box.animate) return;
+    var w = box.clientWidth, h = box.clientHeight;
+    for (var i = 0; i < 12; i++) {
+      var s = document.createElement('span');
+      s.className = 'leaf'; s.textContent = LEAVES[i % LEAVES.length];
+      s.style.top = Math.round(rnd(0, h * 0.75)) + 'px';
+      s.style.fontSize = Math.round(rnd(18, 34)) + 'px';
+      box.appendChild(s);
+      var end = 'translate(' + (w + 80) + 'px,' + Math.round(rnd(30, 150)) + 'px) rotate(' + Math.round(rnd(360, 900)) + 'deg)';
+      var anim = s.animate([
+        { transform: 'translate(-70px,0) rotate(0deg)', opacity: 0 },
+        { opacity: 1, offset: 0.12 },
+        { transform: end, opacity: 0.9, offset: 0.9 },
+        { transform: end, opacity: 0 }
+      ], { duration: rnd(2300, 3900), delay: rnd(100, 1000), easing: 'cubic-bezier(.3,.1,.5,1)', fill: 'both' });
+      anim.onfinish = (function (el) { return function () { el.remove(); }; })(s);
+    }
+  }
+
+  /* =====================================================================
+     Rendering
+     ===================================================================== */
+  var root = document.getElementById('root');
+  var CSS_TEXT = (document.getElementById('potluck-css') || {}).textContent || '';
+  var APP_TEXT = (document.getElementById('potluck-app') || {}).textContent || '';
+  var dlg = null;
+
+  function shellHtml() {
+    return '' +
+      '<div class="wrap">' +
+        '<header class="hero">' +
+          '<div class="hero-bar">' +
+            '<p class="kicker">' + esc(BASE.event.kicker) + '</p>' +
+            '<div class="hero-tools">' +
+              '<span class="mode" id="mode" hidden></span>' +
+              '<button class="btn btn--small" id="bell" type="button" data-act="bell"></button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="hero-main">' +
+            '<div class="hero-copy">' +
+              '<h1 class="title">Who’s bringing what?</h1>' +
+              '<p class="when">' + esc(BASE.event.line) + '</p>' +
+            '</div>' +
+            '<div class="hero-side">' +
+              '<button class="turkey" id="turkey" type="button" data-act="gobble" aria-label="Poke the turkey"><span aria-hidden="true">🦃</span></button>' +
+              '<p class="quip" id="quip" hidden></p>' +
+              '<div class="countdown" id="countdown" role="timer" aria-label="Countdown to dinner"></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="leaves" id="leaves" aria-hidden="true"></div>' +
+        '</header>' +
+        '<section class="meter" id="meter" aria-label="How the spread is shaping up"></section>' +
+        '<div class="stage">' +
+          '<aside class="buffet" id="buffet" aria-label="The buffet: dishes nobody has claimed yet">' +
+            '<div class="buffet-head" id="buffet-head"></div>' +
+            '<div class="buffet-list" id="buffet-list"></div>' +
+          '</aside>' +
+          '<main class="table" id="table">' +
+            '<div class="table-head"><h2>The table</h2>' +
+              '<button class="btn btn--small" type="button" data-act="add-guest">Pull up a chair</button>' +
+              '<p class="table-tip">' + (coarse ? 'Tap a name to edit it. Hold and drag one name onto another to seat them together.' : 'Click a name to edit it. Drag one name onto another to seat them together.') + '</p></div>' +
+            '<ul class="seats" id="seats"></ul>' +
+          '</main>' +
+        '</div>' +
+        '<footer class="foot" id="foot"></footer>' +
+      '</div>' +
+      '<div class="bar" id="bar" role="status" hidden></div>' +
+      '<div class="toasts" id="toasts" aria-live="polite"></div>' +
+      '<dialog class="dlg" id="dlg"></dialog>';
+  }
+
+  function chipHtml(d, kind) {
+    var claimed = kind === 'claimed', isHand = hand === d.id;
+    var label = d.name + (d.wanted && !d.by ? ', most wanted' : '') + (claimed ? '. Pick up to move it or put it back' : '. Pick up');
+    return '<button type="button" class="chip' + (claimed ? ' chip--claimed' : '') + (isLocalDish(d) ? ' is-local' : '') + (isHand ? ' is-hand' : '') + '"' +
+      ' data-dish="' + esc(d.id) + '" aria-pressed="' + (isHand ? 'true' : 'false') + '" aria-label="' + esc(label) + '">' +
+      '<span class="e" aria-hidden="true">' + esc(d.emoji) + '</span><span class="t">' + esc(d.name) + '</span>' +
+      '</button>';
+  }
+
+  function pieSvg(done, total) {
+    var n = Math.max(1, total), r = 40, parts = '', i;
+    function pt(a, rad) { return (50 + rad * Math.cos(a)).toFixed(2) + ' ' + (50 + rad * Math.sin(a)).toFixed(2); }
+    if (n === 1) {
+      parts = '<circle class="slice' + (done ? ' is-in' : '') + '" cx="50" cy="50" r="' + r + '"/>';
+    } else {
+      for (i = 0; i < n; i++) {
+        var a0 = -Math.PI / 2 + i * 2 * Math.PI / n, a1 = -Math.PI / 2 + (i + 1) * 2 * Math.PI / n, mid = (a0 + a1) / 2;
+        parts += '<path class="slice' + (i < done ? ' is-in' : '') + '" d="M50 50 L' + pt(a0, r) + ' A' + r + ' ' + r + ' 0 0 1 ' + pt(a1, r) + ' Z"/>';
+        if (i < done) parts += '<circle class="cream" cx="' + (50 + 25 * Math.cos(mid)).toFixed(2) + '" cy="' + (50 + 25 * Math.sin(mid)).toFixed(2) + '" r="3.4"/>';
+      }
+    }
+    return '<svg class="pie" viewBox="0 0 100 100" role="img" aria-label="Pumpkin pie chart: ' + done + ' of ' + total + ' essentials sorted">' +
+      '<circle class="crust" cx="50" cy="50" r="46"/>' + parts + '</svg>';
+  }
+
+  function renderMeter() {
+    var core = work.dishes.filter(function (d) { return d.core; });
+    var done = core.filter(function (d) { return !!d.by; }), missing = core.filter(function (d) { return !d.by; });
+    var claimed = work.dishes.filter(function (d) { return !!d.by; }).length;
+    var heads = 0, emptyHeads = 0;
+    work.guests.forEach(function (g) { heads += g.n || 1; if (!dishesOf(work, g.id).length) emptyHeads += g.n || 1; });
+    var small = claimed + (claimed === 1 ? ' dish' : ' dishes') + ' claimed so far. ' +
+      (emptyHeads ? emptyHeads + ' of ' + heads + ' people are still empty-handed.' : 'Nobody is empty-handed.');
+    $('#meter').innerHTML =
+      pieSvg(done.length, core.length) +
+      '<div class="meter-copy">' +
+        '<p class="meter-big"><span class="num">' + done.length + ' of ' + core.length + '</span> essentials sorted</p>' +
+        '<p class="meter-small">' + esc(small) + '</p>' +
+      '</div>' +
+      (missing.length
+        ? '<div class="meter-need"><p class="meter-need-h">Still needed</p><p class="meter-need-l">' + missing.map(function (d) { return esc(d.name); }).join(', ') + '.</p></div>'
+        : '<div class="meter-need meter-need--done"><p>Every essential has a cook. Anything else is a bonus.</p></div>');
+  }
+
+  function renderBuffetHead() {
+    var d = hand ? findD(work, hand) : null, html;
+    if (d) {
+      var canDel = d.custom && !d.by && (mode !== 'guest' || !findD(BASE, d.id));
+      html = '<div class="hand" role="status">' +
+        '<span class="hand-what"><span aria-hidden="true">' + esc(d.emoji) + '</span> ' + esc(d.name) + '</span>' +
+        '<span class="hand-how">Now tap a name on the table.</span>' +
+        '<span class="hand-acts">' +
+          (d.by ? '<button class="btn btn--small" type="button" data-act="put-back">Put it back</button>' : '') +
+          (canDel ? '<button class="btn btn--small" type="button" data-act="del-dish">Remove it</button>' : '') +
+          '<button class="btn btn--small" type="button" data-act="cancel-hand">Cancel</button>' +
+        '</span></div>';
+    } else {
+      html = '<div class="buffet-title"><h2>The buffet</h2><p class="hint">' +
+          (coarse ? 'Tap a dish, then a name. Or hold and drag.' : 'Drag a dish onto a name. Or click a dish, then a name.') +
+        '</p></div>' +
+        '<div class="buffet-acts">' +
+          '<button class="btn btn--small" type="button" data-act="roll"><span aria-hidden="true">🎲</span><span class="lbl">Pick for me</span></button>' +
+          '<button class="btn btn--small" type="button" data-act="add-dish"><span aria-hidden="true">＋</span><span class="lbl">Add a dish</span></button>' +
+          '<button class="btn btn--small only-narrow" type="button" data-act="toggle-buffet" aria-expanded="' + (buffetOpen ? 'true' : 'false') + '">' +
+            '<span aria-hidden="true">' + (buffetOpen ? '▾' : '▴') + '</span><span class="lbl">' + (buffetOpen ? 'Show fewer dishes' : 'Show all dishes') + '</span></button>' +
+        '</div>';
+    }
+    $('#buffet-head').innerHTML = html;
+    $('#buffet').classList.toggle('is-open', buffetOpen && !d);
+  }
+
+  function renderBuffetList() {
+    var left = unclaimed(work), box = $('#buffet-list');
+    if (!left.length) {
+      box.innerHTML = '<p class="bare">The buffet is bare: every dish has a home. Bringing something else? Add a dish.</p>';
+      return;
+    }
+    var wanted = left.filter(function (d) { return d.wanted; });
+    var groups = (wanted.length ? [{ label: '★ Most wanted', ds: wanted }] : []).concat(CATS.map(function (c) {
+      return { label: c.label, ds: left.filter(function (d) { return d.cat === c.id && !d.wanted; }) };
+    }));
+    box.innerHTML = groups.map(function (g) {
+      if (!g.ds.length) return '';
+      return '<div class="group"><h3>' + g.label + '</h3><div class="chips">' + g.ds.map(function (d) { return chipHtml(d); }).join('') + '</div></div>';
+    }).join('');
+  }
+
+  function bitePos(i, n) {
+    if (n === 1) return { x: 50, y: 50, s: 2.7 };
+    if (n === 2) return { x: i ? 67 : 33, y: 50, s: 2 };
+    var a = (-90 + i * 360 / n) * Math.PI / 180, r = n === 3 ? 21 : 24;
+    return { x: 50 + r * Math.cos(a), y: 50 + r * Math.sin(a), s: n === 3 ? 1.7 : n === 4 ? 1.5 : 1.3 };
+  }
+  function seatHtml(g) {
+    var ds = dishesOf(work, g.id), n = ds.length, shown = ds.slice(0, 6);
+    var bites = shown.map(function (d, i) {
+      var p = bitePos(i, shown.length);
+      return '<span class="bite" style="left:' + p.x.toFixed(1) + '%;top:' + p.y.toFixed(1) + '%;font-size:' + p.s + 'em">' + esc(d.emoji) + '</span>';
+    }).join('');
+    var label = g.name + ', ' + (n ? 'bringing ' + ds.map(function (d) { return d.name; }).join(', ') : 'empty-handed so far') + '. Open to edit names, add a note or change who sits together';
+    return '<li class="seat' + (g.members.length > 1 ? ' seat--duo' : '') + (n ? '' : ' is-empty') + (isLocalGuest(g) ? ' is-local' : '') + '" data-guest="' + esc(g.id) + '">' +
+      '<button type="button" class="seat-main" data-act="seat" aria-label="' + esc(label) + '">' +
+        '<span class="plate" aria-hidden="true">' + (n ? bites : '<span class="bite bite--none">🍴</span>') + (n > 6 ? '<span class="more">+' + (n - 6) + '</span>' : '') + '</span>' +
+        '<span class="namecard">' + esc(g.name) + '</span>' +
+      '</button>' +
+      '<div class="seat-body">' +
+        (g.note ? '<p class="quote">“' + esc(g.note) + '”</p>' : '') +
+        (n ? '<ul class="haul">' + ds.map(function (d) { return '<li>' + chipHtml(d, 'claimed') + '</li>'; }).join('') + '</ul>'
+           : '<p class="none">Empty-handed</p>') +
+      '</div>' +
+      '</li>';
+  }
+  function renderSeats() { $('#seats').innerHTML = work.guests.map(seatHtml).join(''); }
+  function seatEl(gid) { var all = $$('.seat'); for (var i = 0; i < all.length; i++) if (all[i].getAttribute('data-guest') === gid) return all[i]; return null; }
+
+  function fmtWhen(iso) {
+    var t = Date.parse(iso); if (!t) return '';
+    try { return new Date(t).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); }
+    catch (e) { return new Date(t).toString(); }
+  }
+  function renderFoot() {
+    var when = fmtWhen(BASE.updated);
+    $('#foot').innerHTML =
+      '<button class="btn" type="button" data-act="copy-menu">Copy the menu so far</button>' +
+      '<p class="foot-how">Not feeling traditional? Add a dish of your own. Something from home is always welcome.</p>' +
+      '<p class="foot-note">' + (when ? 'Board last saved ' + esc(when) + '. ' : '') + 'A dashed outline means a change is not saved for everyone yet.</p>';
+  }
+
+  function renderMode() {
+    var el = $('#mode'); if (!el) return;
+    if (mode === 'guest') { el.hidden = false; el.textContent = 'View only: your moves stay on your screen'; }
+    else if (mode === 'writer') { el.hidden = false; el.textContent = 'You can edit this board'; }
+    else el.hidden = true;
+  }
+  function renderBell() {
+    var b = $('#bell'); if (!b) return;
+    b.innerHTML = '<span aria-hidden="true">' + (soundOn ? '🔔' : '🔕') + '</span><span class="lbl">' + (soundOn ? 'Sound on' : 'Sound off') + '</span>';
+    b.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+  }
+
+  function renderBar() {
+    var bar = $('#bar'), n = ops.length, html;
+    if (!n && !saving && !saveError) { bar.hidden = true; bar.innerHTML = ''; syncSpace(); return; }
+    bar.hidden = false;
+    if (saving) {
+      html = '<span class="bar-msg"><span class="spin" aria-hidden="true"></span>Saving for everyone…</span>';
+    } else if (mode === 'pending') {
+      html = '<span class="bar-msg">Checking whether you can save here…</span>';
+    } else if (mode === 'guest') {
+      html = '<span class="bar-msg"><strong>Only on your screen so far.</strong> Paste your picks in the group chat to make them official.</span>' +
+        '<span class="bar-acts"><button class="btn btn--small btn--go" type="button" data-act="copy-picks">Copy my picks</button>' +
+        '<button class="btn btn--small btn--quiet" type="button" data-act="discard">Reset</button></span>';
+    } else {
+      var tail = saveError ? esc(saveError)
+        : afterConflict ? 'Someone else saved first. Check the board, then save again.'
+        : auto.on ? '<span id="auto-txt">' + autoText() + '</span>' : '';
+      html = '<span class="bar-msg"><strong>' + n + (n === 1 ? ' change' : ' changes') + ' not saved yet.</strong> ' + tail + '</span>' +
+        '<span class="bar-acts"><button class="btn btn--small btn--go" type="button" data-act="save">Save for everyone</button>' +
+        '<button class="btn btn--small btn--quiet" type="button" data-act="discard">Undo</button></span>';
+    }
+    bar.innerHTML = html;
+    syncSpace();
+  }
+
+  function syncSpace() {
+    var de = document.documentElement, b = $('#buffet'), bar = $('#bar');
+    de.style.setProperty('--tray-h', (mqNarrow.matches && b ? b.offsetHeight : 0) + 'px');
+    de.style.setProperty('--bar-h', (bar && !bar.hidden ? bar.offsetHeight + 12 : 0) + 'px');
+  }
+
+  function renderAll() {
+    renderMeter(); renderBuffetHead(); renderBuffetList(); renderSeats(); renderFoot(); renderBar();
+    document.body.classList.toggle('has-hand', !!hand);
+    syncSpace();
+  }
+
+  function renderCountdown() {
+    var box = $('#countdown'), start = Date.parse(BASE.event.start);
+    if (!box) return;
+    if (!start) { box.hidden = true; return; }
+    var ms = start - Date.now();
+    if (ms <= 0) {
+      if (box.getAttribute('data-done') !== '1') { box.setAttribute('data-done', '1'); box.innerHTML = '<p class="countdown-done">It’s turkey time.</p>'; }
+      return;
+    }
+    var s = Math.floor(ms / 1000), vals = [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60];
+    if (!box.firstChild) {
+      box.innerHTML = ['days', 'hours', 'min', 'sec'].map(function (l) { return '<div class="tick"><b>0</b><span>' + l + '</span></div>'; }).join('');
+    }
+    var bs = box.getElementsByTagName('b');
+    for (var i = 0; i < bs.length && i < 4; i++) {
+      var txt = i === 0 ? String(vals[i]) : (vals[i] < 10 ? '0' : '') + vals[i];
+      if (bs[i].textContent !== txt) bs[i].textContent = txt;
+    }
+  }
+
+  function toast(msg, ms) {
+    var box = $('#toasts'); if (!box) return;
+    var t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    box.appendChild(t);
+    setTimeout(function () { t.remove(); }, ms || 3200);
+  }
+
+  /* =====================================================================
+     Actions
+     ===================================================================== */
+  function setHand(id, quiet) {
+    var prev = hand;
+    hand = id && findD(work, id) ? id : null;
+    $$('.chip[data-dish]').forEach(function (c) {
+      var on = c.getAttribute('data-dish') === hand;
+      c.classList.toggle('is-hand', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.body.classList.toggle('has-hand', !!hand);
+    if (hand) buffetOpen = false;
+    renderBuffetHead(); syncSpace();
+    if (hand && !quiet) sfx.pick();
+    if (!hand && prev && !quiet) {
+      var back = $$('.chip[data-dish]').filter(function (c) { return c.getAttribute('data-dish') === prev; })[0];
+      if (back && document.activeElement === document.body) back.focus();
+    }
+  }
+
+  function changed(fx) {
+    fx = fx || {};
+    ops = canonicalOps(BASE, work);
+    dirty = true; afterConflict = false; saveError = '';
+    hand = null;
+    stashNow();
+    renderAll();
+    if (mode === 'writer') armAuto();
+    if (fx.seat) feed(fx.seat, fx.dish, fx.focus);
+    else if (fx.back) sfx.back();
+    else if (fx.added) sfx.drop();
+    if (fx.wasDone === false && coreDone(work)) {
+      setTimeout(function () { rain(34); sfx.fanfare(); toast('Every essential has a cook. Friendsgiving is safe.', 4200); }, 350);
+    }
+  }
+
+  function feed(gid, d, focus) {
+    var seat = seatEl(gid); if (!seat) return;
+    seat.classList.add('just-fed');
+    setTimeout(function () { seat.classList.remove('just-fed'); }, 650);
+    var plate = $('.plate', seat), p = plate.getBoundingClientRect();
+    burst(p.left + p.width / 2, p.top + p.height / 2, d && d.id === 'turkey' ? 22 : 12, PARTY);
+    if (d && d.id === 'turkey') sfx.gobble(); else sfx.drop();
+    if (focus) { var m = $('.seat-main', seat); if (m) m.focus({ preventScroll: true }); }
+  }
+
+  function give(dishId, guestId, focus) {
+    var d = findD(work, dishId), g = findG(work, guestId);
+    if (!d || !g) { setHand(null, true); return; }
+    if (d.by === guestId) { setHand(null, true); return; }
+    var was = coreDone(work);
+    d.by = guestId;
+    changed({ seat: guestId, dish: d, wasDone: was, focus: focus });
+  }
+  function putBack(dishId) {
+    var d = findD(work, dishId);
+    if (!d || !d.by) { setHand(null, true); return; }
+    d.by = null;
+    changed({ back: true });
+  }
+  function discard() {
+    work = clone(BASE); ops = []; hand = null; saveError = ''; afterConflict = false;
+    disarmAuto(); stashNow(); renderAll();
+    toast('Back to the saved board.');
+  }
+
+  /* ---------- dialogs ---------- */
+  function dlgOpen() { return !!(dlg && dlg.open); }
+  function openDlg(html, focusSel) {
+    dlg.innerHTML = '<div class="dlg-body">' + html + '</div>';
+    try { if (!dlg.open) dlg.showModal(); } catch (e) { dlg.setAttribute('open', ''); }
+    var f = focusSel && $(focusSel, dlg);
+    if (f) setTimeout(function () { try { f.focus(); } catch (e) { /* ignore */ } }, 30);
+  }
+  function closeDlg() {
+    stopReel();
+    try { dlg.close(); } catch (e) { dlg.removeAttribute('open'); }
+    dlg.innerHTML = '';
+  }
+  function showErr(msg) { var e = $('#f-err', dlg); if (e) { e.hidden = false; e.textContent = msg; } }
+
+  function openAddDish() {
+    var guests = work.guests.map(function (g) { return '<option value="' + esc(g.id) + '">' + esc(g.name) + '</option>'; }).join('');
+    var cats = CATS.map(function (c) { return '<option value="' + c.id + '"' + (c.id === 'side' ? ' selected' : '') + '>' + c.label + '</option>'; }).join('');
+    var emo = EMOJI_CHOICES.map(function (e, i) {
+      return '<button type="button" class="emoji-btn" role="radio" aria-checked="' + (i === 0 ? 'true' : 'false') + '" data-act="emoji" aria-label="Picture ' + (i + 1) + ': ' + e + '">' + e + '</button>';
+    }).join('');
+    openDlg(
+      '<h2 class="dlg-title">Add a dish</h2>' +
+      '<p class="dlg-sub">Traditional or not. Something from home is always welcome.</p>' +
+      '<label class="field"><span>What is it?</span><input id="f-name" type="text" maxlength="40" autocomplete="off" placeholder="Tortilla de patatas"></label>' +
+      '<div class="field"><span id="f-emoji-l">Pick a picture</span><div class="emoji-grid" role="radiogroup" aria-labelledby="f-emoji-l">' + emo + '</div></div>' +
+      '<label class="field"><span>What kind of dish?</span><select id="f-cat">' + cats + '</select></label>' +
+      '<label class="field"><span>Who’s bringing it?</span><select id="f-by"><option value="">Nobody yet, put it on the buffet</option>' + guests + '</select></label>' +
+      '<p class="err" id="f-err" hidden></p>' +
+      '<div class="dlg-acts"><button type="button" class="btn btn--quiet" data-act="dlg-close">Cancel</button>' +
+      '<button type="button" class="btn btn--go" data-act="dish-ok">Add dish</button></div>', '#f-name');
+  }
+  function submitDish() {
+    var name = str($('#f-name', dlg).value, 40);
+    if (!name) { showErr('Give the dish a name.'); return; }
+    var lower = name.toLowerCase();
+    if (work.dishes.some(function (d) { return d.name.toLowerCase() === lower; })) { showErr('“' + name + '” is already on the list.'); return; }
+    var sel = $('.emoji-btn[aria-checked="true"]', dlg), cat = $('#f-cat', dlg).value, by = $('#f-by', dlg).value || null;
+    var d = { id: uid('d'), name: name, emoji: sel ? sel.textContent : '🍲', cat: CAT_IDS[cat] ? cat : 'side', by: by && findG(work, by) ? by : null, core: false, wanted: false, custom: true };
+    var was = coreDone(work);
+    work.dishes.push(d);
+    closeDlg();
+    changed(d.by ? { seat: d.by, dish: d, wasDone: was } : { added: true });
+    if (!d.by) toast(d.emoji + ' ' + d.name + ' is on the buffet.');
+  }
+
+  function openAddGuest() {
+    openDlg(
+      '<h2 class="dlg-title">Pull up a chair</h2>' +
+      '<p class="dlg-sub">Add someone to the table. For a pair sharing a plate, write both names with an &amp; between them.</p>' +
+      '<label class="field"><span>Name</span><input id="f-gname" type="text" maxlength="60" autocomplete="off" placeholder="Ana, or Ana &amp; Luis"></label>' +
+      '<p class="err" id="f-err" hidden></p>' +
+      '<div class="dlg-acts"><button type="button" class="btn btn--quiet" data-act="dlg-close">Cancel</button>' +
+      '<button type="button" class="btn btn--go" data-act="guest-ok">Add to the table</button></div>', '#f-gname');
+  }
+  function nameTaken(name, exceptId) {
+    var lower = name.toLowerCase();
+    return work.guests.some(function (g) {
+      return g.id !== exceptId && g.members.some(function (m) { return m.toLowerCase() === lower; });
+    });
+  }
+  function submitGuest() {
+    var members = splitNames($('#f-gname', dlg).value).slice(0, MAX_MEMBERS);
+    if (!members.length) { showErr('Type a name first.'); return; }
+    for (var i = 0; i < members.length; i++) {
+      if (nameTaken(members[i])) { showErr(members[i] + ' is already at the table.'); return; }
+    }
+    var g = mkGuest(uid('g'), members, '');
+    work.guests.push(g);
+    closeDlg();
+    changed({});
+    sfx.drop();
+    spotlight(g.id);
+    toast(g.name + (g.n > 1 ? ' have a seat.' : ' has a seat.'));
+  }
+  function spotlight(gid) {
+    var seat = seatEl(gid); if (!seat) return;
+    try { seat.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' }); } catch (e) { /* ignore */ }
+    seat.classList.add('just-fed');
+    setTimeout(function () { seat.classList.remove('just-fed'); }, 650);
+  }
+
+  /* ---------- seating: rename, seat together, seat apart ---------- */
+  function mergeSeats(hostId, otherId) {
+    var a = findG(work, hostId), b = findG(work, otherId);
+    if (!a || !b || a === b) return false;
+    if (a.members.length + b.members.length > MAX_MEMBERS) { toast('That seat is full.'); return false; }
+    setMembers(a, a.members.concat(b.members));
+    if (b.note) a.note = str(a.note ? a.note + ' / ' + b.note : b.note, 120);
+    work.dishes.forEach(function (d) { if (d.by === otherId) d.by = hostId; });
+    work.guests = work.guests.filter(function (x) { return x.id !== otherId; });
+    changed({ seat: hostId });
+    toast(a.name + ' now share a plate.');
+    return true;
+  }
+  function splitSeat(gid, i) {
+    var g = findG(work, gid);
+    if (!g || g.members.length < 2 || !g.members[i]) return false;
+    var who = g.members[i];
+    setMembers(g, g.members.filter(function (_, k) { return k !== i; }));
+    var ng = mkGuest(uid('g'), [who], '');
+    work.guests.splice(indexOfG(work, gid) + 1, 0, ng);
+    changed({ back: true });
+    spotlight(ng.id);
+    toast(who + ' has a separate seat.' + (dishesOf(work, gid).length ? ' The dishes stayed with ' + g.name + '.' : ''));
+    return true;
+  }
+  /* Reads the names and the note typed in the seat dialog. Returns false and shows why if a name is missing. */
+  function applySeatForm(g) {
+    var inputs = $$('.f-member', dlg), names = [], i, v;
+    for (i = 0; i < inputs.length; i++) {
+      v = str(inputs[i].value, 24);
+      if (!v) { showErr('A name can’t be empty.'); try { inputs[i].focus(); } catch (e) { /* ignore */ } return false; }
+      if (nameTaken(v, g.id) || names.some(function (x) { return x.toLowerCase() === v.toLowerCase(); })) { showErr(v + ' is already at the table.'); return false; }
+      names.push(v);
+    }
+    if (names.length && !sameList(names, g.members)) setMembers(g, names);
+    var note = $('#f-note', dlg);
+    if (note) g.note = str(note.value, 100);
+    return true;
+  }
+
+  function openSeat(gid) {
+    var g = findG(work, gid); if (!g) return;
+    var ds = dishesOf(work, gid), canRemove = mode !== 'guest' || isNewGuest(g), multi = g.members.length > 1;
+    var others = work.guests.filter(function (x) { return x.id !== gid && x.members.length + g.members.length <= MAX_MEMBERS; });
+    openDlg(
+      '<h2 class="dlg-title">' + esc(g.name) + '</h2>' +
+      (ds.length
+        ? '<ul class="dlg-list">' + ds.map(function (d) {
+            return '<li><span>' + esc(d.emoji) + ' ' + esc(d.name) + '</span><button type="button" class="btn btn--small" data-act="seat-back" data-d="' + esc(d.id) + '">Put back</button></li>';
+          }).join('') + '</ul>'
+        : '<p class="dlg-sub">Nothing on this plate yet. Drag a dish here, or tap a dish and then this name.</p>') +
+      '<div class="field"><span id="f-names-l">' + (multi ? 'Names' : 'Name') + '</span>' +
+        '<div class="names" role="group" aria-labelledby="f-names-l">' + g.members.map(function (m, i) {
+          return '<div class="name-row"><input class="f-member" type="text" maxlength="24" autocomplete="off" aria-label="Name' + (multi ? ' ' + (i + 1) : '') + '" value="' + esc(m) + '">' +
+            (multi ? '<button type="button" class="btn btn--small" data-act="seat-split" data-g="' + esc(g.id) + '" data-i="' + i + '" aria-label="Give ' + esc(m) + ' a separate seat">Own seat</button>' : '') +
+            '</div>';
+        }).join('') + '</div></div>' +
+      (others.length
+        ? '<div class="field"><label for="f-join">Seat together with</label><div class="name-row"><select id="f-join"><option value="">Choose someone</option>' +
+            others.map(function (x) { return '<option value="' + esc(x.id) + '">' + esc(x.name) + '</option>'; }).join('') +
+            '</select><button type="button" class="btn btn--small" data-act="seat-join" data-g="' + esc(g.id) + '">Seat together</button></div></div>'
+        : '') +
+      '<label class="field"><span>A note for the table</span><input id="f-note" type="text" maxlength="100" autocomplete="off" placeholder="Running late, veggie, bringing a plus one" value="' + esc(g.note || '') + '"></label>' +
+      '<p class="err" id="f-err" hidden></p>' +
+      '<div class="dlg-acts">' +
+        (canRemove ? '<button type="button" class="btn btn--small btn--quiet btn--danger" data-act="seat-remove" data-g="' + esc(g.id) + '">Remove from the table</button>' : '') +
+        '<button type="button" class="btn btn--small btn--quiet" data-act="dlg-close">Close</button>' +
+        '<button type="button" class="btn btn--small btn--go" data-act="seat-ok" data-g="' + esc(g.id) + '">Save</button>' +
+      '</div>');
+  }
+
+  /* ---------- pick for me ---------- */
+  var reel = { t: 0, pick: null };
+  function stopReel() { if (reel.t) { clearTimeout(reel.t); reel.t = 0; } }
+  function rollPool() {
+    var pool = unclaimed(work).filter(function (d) { return d.cat !== 'extra'; });
+    return pool.length ? pool : unclaimed(work);
+  }
+  function openRoll() {
+    if (!rollPool().length) { toast('The buffet is bare. Nothing left to pick.'); return; }
+    openDlg(
+      '<h2 class="dlg-title">Let the turkey decide</h2>' +
+      '<div class="reel"><div class="reel-e" id="reel-e" aria-hidden="true">🎲</div><p class="reel-n" id="reel-n" aria-live="polite">Rolling…</p></div>' +
+      '<div class="dlg-acts"><button type="button" class="btn btn--small btn--quiet" data-act="dlg-close">No thanks</button>' +
+      '<button type="button" class="btn btn--small" data-act="roll-again" id="roll-again" disabled>Roll again</button>' +
+      '<button type="button" class="btn btn--small btn--go" data-act="roll-take" id="roll-take" disabled>I’ll bring it</button></div>');
+    spin();
+  }
+  function spin() {
+    stopReel();
+    var pool = rollPool(); if (!pool.length) { closeDlg(); return; }
+    var bag = [];
+    pool.forEach(function (d) { bag.push(d); if (d.wanted) { bag.push(d); bag.push(d); } });
+    var final = bag[Math.floor(Math.random() * bag.length)];
+    var steps = reduceMotion ? 1 : 15 + Math.floor(Math.random() * 6), i = 0;
+    var e = $('#reel-e', dlg), n = $('#reel-n', dlg), take = $('#roll-take', dlg), again = $('#roll-again', dlg);
+    if (!e || !n) return;
+    take.disabled = true; again.disabled = true; e.classList.remove('is-landed'); n.textContent = 'Rolling…'; reel.pick = null;
+    (function step() {
+      i++;
+      var d = i >= steps ? final : pool[Math.floor(Math.random() * pool.length)];
+      e.textContent = d.emoji;
+      if (i >= steps) {
+        n.textContent = d.name; e.classList.add('is-landed'); reel.pick = d.id; reel.t = 0;
+        take.disabled = false; again.disabled = false;
+        sfx.fanfare();
+        try { take.focus(); } catch (err) { /* ignore */ }
+        return;
+      }
+      sfx.tick();
+      reel.t = setTimeout(step, 55 + i * i * 1.2);
+    })();
+  }
+
+  /* ---------- copy ---------- */
+  function picksText() {
+    return 'Friendsgiving potluck, for the board:\n' + ops.map(describe).filter(Boolean).map(function (l) { return '• ' + l; }).join('\n');
+  }
+  function menuText() {
+    var out = [BASE.event.kicker, BASE.event.line, '', 'Who’s bringing what:'];
+    work.guests.forEach(function (g) {
+      var ds = dishesOf(work, g.id);
+      if (ds.length) out.push('• ' + g.name + ': ' + ds.map(function (d) { return d.emoji + ' ' + d.name; }).join(', '));
+    });
+    var empty = work.guests.filter(function (g) { return !dishesOf(work, g.id).length; }).map(function (g) { return g.name; });
+    if (empty.length) out.push('', 'Empty-handed so far: ' + empty.join(', '));
+    var need = work.dishes.filter(function (d) { return d.core && !d.by; });
+    if (need.length) out.push('', 'Still needed: ' + need.map(function (d) { return d.emoji + ' ' + d.name; }).join(', '));
+    return out.join('\n');
+  }
+  function showCopyDialog(text) {
+    openDlg(
+      '<h2 class="dlg-title">Copy this</h2>' +
+      '<p class="dlg-sub">Copying is blocked here, so select the text and copy it yourself.</p>' +
+      '<textarea class="copybox" id="copybox" readonly></textarea>' +
+      '<div class="dlg-acts"><button type="button" class="btn btn--small" data-act="select-all">Select all</button>' +
+      '<button type="button" class="btn btn--small btn--go" data-act="dlg-close">Done</button></div>');
+    var box = $('#copybox', dlg);
+    if (box) { box.value = text; setTimeout(function () { try { box.focus(); box.select(); } catch (e) { /* ignore */ } }, 40); }
+  }
+  function copyText(text, okMsg) {
+    function fallback() {
+      var ok = false;
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+        document.body.appendChild(ta);
+        ta.select(); ta.setSelectionRange(0, text.length);
+        ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+      } catch (e) { ok = false; }
+      if (ok) toast(okMsg); else showCopyDialog(text);
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { toast(okMsg); }, fallback);
+        return;
+      }
+    } catch (e) { /* fall through */ }
+    fallback();
+  }
+
+  /* ---------- turkey ---------- */
+  var QUIPS = [
+    'Gobble gobble.',
+    'An actual pavo entero. That’s me.',
+    'Shoes stay on the floor, please.',
+    'Cranberry sauce from a jar still counts.',
+    'See you at 18:00. I don’t have a choice.'
+  ];
+  var quipI = 0, quipT = 0;
+  function gobble() {
+    var t = $('#turkey'), q = $('#quip');
+    t.classList.remove('is-gobbling'); void t.offsetWidth; t.classList.add('is-gobbling');
+    sfx.gobble();
+    var missing = work.dishes.filter(function (d) { return d.core && !d.by; });
+    var line = (quipI % 3 === 2 && missing.length)
+      ? 'Still nobody on ' + missing[Math.floor(Math.random() * missing.length)].name.toLowerCase() + '? Bold.'
+      : QUIPS[quipI % QUIPS.length];
+    quipI++;
+    q.textContent = line; q.hidden = false;
+    clearTimeout(quipT);
+    quipT = setTimeout(function () { q.hidden = true; }, 2800);
+    var r = t.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2, 8, LEAVES);
+  }
+
+  /* =====================================================================
+     Saving. Whoever can edit the page saves the whole board back into it.
+     ===================================================================== */
+  var AUTO_MS = 8000;
+  var auto = { on: false, left: 0, last: 0, t: 0, paused: false };
+  var READ_ONLY = { not_writer: 1, not_granted: 1, not_declared: 1, capability_disabled: 1, capability_removed: 1, consent_required: 1 };
+
+  function isTyping() {
+    var a = document.activeElement, tag = a && a.tagName;
+    return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+  }
+  function busy() { return drag.active || !!drag.pending || !!hand || dlgOpen() || isTyping(); }
+  function autoText() { return auto.paused ? 'Saves when you’re done.' : 'Saving in ' + Math.max(1, Math.ceil(auto.left / 1000)) + '…'; }
+  function armAuto() {
+    if (mode !== 'writer' || !ops.length || !artifactNs) { disarmAuto(); renderBar(); return; }
+    auto.on = true; auto.left = AUTO_MS; auto.last = Date.now(); auto.paused = false;
+    if (!auto.t) auto.t = setInterval(tickAuto, 200);
+    renderBar();
+  }
+  function disarmAuto() { auto.on = false; if (auto.t) { clearInterval(auto.t); auto.t = 0; } }
+  function tickAuto() {
+    var now = Date.now(), dt = now - auto.last; auto.last = now;
+    if (!auto.on || saving) return;
+    var el = $('#auto-txt');
+    if (busy()) {
+      auto.paused = true; auto.left = Math.max(auto.left, 3000);
+      if (el) el.textContent = autoText();
+      return;
+    }
+    auto.paused = false;
+    auto.left -= dt;
+    if (auto.left <= 0) { disarmAuto(); save(); return; }
+    if (el) el.textContent = autoText();
+  }
+
+  function adopt(next) {
+    BASE = normalize(next); work = clone(BASE); ops = [];
+    saving = false; saveError = ''; dirty = false; afterConflict = false;
+    stashNow(); renderAll();
+    toast('Saved for everyone.');
+  }
+
+  function save() {
+    if (saving || !ops.length) return;
+    if (mode !== 'writer' || !artifactNs) { renderBar(); return; }
+    saving = true; saveError = ''; disarmAuto(); renderBar();
+    var next = clone(work);
+    next.rev = (BASE.rev || 0) + 1;
+    next.updated = new Date().toISOString();
+    var html = buildDocument({ css: CSS_TEXT, app: APP_TEXT, state: next });
+    stashNow({ saved: Date.now(), y: window.scrollY });
+
+    function fail(msg) { saving = false; saveError = msg; stashNow(); renderBar(); }
+    function attempt(tries) {
+      var p;
+      try { p = Promise.resolve(artifactNs.publish(html)); } catch (e) { p = Promise.reject(e); }
+      p.then(function () {
+        /* Every open view reloads to the new version. If this one has not after a moment, carry on in place. */
+        setTimeout(function () { adopt(next); }, 2500);
+      }, function (err) {
+        var code = (err && err.code) || 'upstream_error';
+        if (code === 'conflict') {
+          /* Someone saved first. The page reloads to their version and our changes are replayed on top of it. */
+          saving = false; saveError = 'Someone else saved first. Loading their version…';
+          stashNow({ conflict: Date.now(), y: window.scrollY });
+          renderBar();
+          return;
+        }
+        if (READ_ONLY[code]) {
+          saving = false; mode = 'guest'; stashNow();
+          renderMode(); renderAll();
+          toast('This view can’t save changes. You can still copy your picks.', 4500);
+          return;
+        }
+        if (code === 'rate_limited') { fail('Saving too often. Give it a minute, then save again.'); return; }
+        if (code === 'too_large' || code === 'invalid_content' || code === 'transform_error' || code === 'read_only_path') { fail('That change could not be saved. Undo it and try again.'); return; }
+        if (tries < 1) { setTimeout(function () { attempt(tries + 1); }, 700 + Math.random() * 900); return; }
+        fail('Could not save just now. Check your connection, then save again.');
+      });
+    }
+    attempt(0);
+  }
+
+  function safeUse(name) {
+    try { return Promise.resolve(window.claude.use(name)).then(function (v) { return v || null; }, function () { return null; }); }
+    catch (e) { return Promise.resolve(null); }
+  }
+  function setMode(m) {
+    mode = m;
+    renderMode(); renderBuffetHead(); renderBar();
+    if (m === 'writer' && ops.length && dirty && !afterConflict) armAuto();
+  }
+  function resolveMode() {
+    var c = window.claude;
+    if (!c || typeof c.use !== 'function') { setMode('guest'); return; }
+    Promise.all([safeUse('artifact'), safeUse('user')]).then(function (r) {
+      var art = r[0], usr = r[1];
+      if (!art || typeof art.publish !== 'function') { setMode('guest'); return; }
+      artifactNs = art;
+      if (!usr || typeof usr.canEdit !== 'function') { setMode('writer'); return; }
+      var p;
+      try { p = Promise.resolve(usr.canEdit()); } catch (e) { p = Promise.resolve(null); }
+      p.then(function (ok) { setMode(ok === false ? 'guest' : 'writer'); }, function () { setMode('writer'); });
+    });
+  }
+
+  /* =====================================================================
+     Drag and drop. Mouse and pen use pointer events. Touch uses touch
+     events so a long press can lift a dish without fighting the scroll.
+     ===================================================================== */
+  var drag = { active: false, pending: null, kind: '', what: 'dish', id: null, ghost: null, over: null, overBuffet: false, x: 0, y: 0, w: 0, h: 0, off: 0, home: null, raf: 0, touchId: null };
+
+  function chipFrom(target) { return target && target.closest ? target.closest('.chip[data-dish]') : null; }
+  /* A name can be dragged onto another name to seat them together, but not while a dish is in hand. */
+  function seatMainFrom(target) { return !hand && target && target.closest ? target.closest('.seat-main') : null; }
+  function pendingFrom(target) {
+    var chip = chipFrom(target), sm;
+    if (chip) return { what: 'dish', el: chip, id: chip.getAttribute('data-dish') };
+    sm = seatMainFrom(target);
+    if (sm && sm.closest('.seat')) return { what: 'seat', el: sm, id: sm.closest('.seat').getAttribute('data-guest') };
+    return null;
+  }
+  function cancelPending() { if (drag.pending) { if (drag.pending.timer) clearTimeout(drag.pending.timer); drag.pending = null; } }
+
+  function place() {
+    if (!drag.ghost) return;
+    drag.ghost.style.transform = 'translate(' + (drag.x - drag.w / 2) + 'px,' + (drag.y + drag.off - drag.h / 2) + 'px) rotate(-5deg) scale(1.08)';
+  }
+  function hit() {
+    var el = document.elementFromPoint(drag.x, drag.y + drag.off);
+    var seat = el && el.closest ? el.closest('.seat') : null;
+    var buf = el && el.closest ? el.closest('#buffet') : null;
+    if (drag.what === 'seat') {
+      buf = null;
+      if (seat && seat.getAttribute('data-guest') === drag.id) seat = null;
+    }
+    if (drag.over && drag.over !== seat) drag.over.classList.remove('is-over');
+    if (seat && drag.over !== seat) seat.classList.add('is-over');
+    drag.over = seat || null;
+    var d = findD(work, drag.id), canReturn = !!(buf && d && d.by);
+    if (canReturn !== drag.overBuffet) { $('#buffet').classList.toggle('is-over', canReturn); drag.overBuffet = canReturn; }
+  }
+  function scrollLoop() {
+    if (!drag.active) return;
+    var y = drag.y, vh = window.innerHeight, tray = mqNarrow.matches ? $('#buffet').offsetHeight : 0, edge = vh - tray, dy = 0;
+    /* An edge only scrolls once the finger has been away from it, so lifting a dish near an edge does not jolt the page. */
+    if (y > 104) drag.armTop = true;
+    if (y < edge - 92) drag.armBottom = true;
+    if (y < 84 && drag.armTop) dy = -Math.ceil((84 - y) / 6) - 2;
+    else if (y < edge && y > edge - 72 && drag.armBottom) dy = Math.ceil((y - (edge - 72)) / 6) + 2;
+    if (dy) { window.scrollBy(0, dy); hit(); }
+    drag.raf = requestAnimationFrame(scrollLoop);
+  }
+  function startDrag(id, el, x, y, kind, touchId, what) {
+    if (!el || !el.isConnected) return;
+    var r, g;
+    if (what === 'seat') {
+      var guest = findG(work, id), seat = el.closest('.seat'), card = $('.namecard', el);
+      if (!guest || !seat) return;
+      g = document.createElement('div');
+      g.className = 'chip ghost'; g.setAttribute('aria-hidden', 'true');
+      g.innerHTML = '<span class="e">🪑</span><span class="t">' + esc(guest.name) + '</span>';
+      document.body.appendChild(g);
+      r = g.getBoundingClientRect();
+      drag.home = (card || el).getBoundingClientRect();
+      seat.classList.add('is-lifted-seat');
+    } else {
+      if (!findD(work, id)) return;
+      if (hand) setHand(null, true);
+      r = el.getBoundingClientRect();
+      g = el.cloneNode(true);
+      g.className = 'chip ghost';
+      g.removeAttribute('data-dish'); g.removeAttribute('aria-pressed'); g.setAttribute('aria-hidden', 'true');
+      g.style.width = Math.ceil(r.width) + 'px';
+      document.body.appendChild(g);
+      drag.home = r;
+      $$('.chip[data-dish]').forEach(function (c) { if (c.getAttribute('data-dish') === id) c.classList.add('is-lifted'); });
+    }
+    drag.active = true; drag.kind = kind; drag.what = what === 'seat' ? 'seat' : 'dish'; drag.id = id; drag.ghost = g;
+    drag.touchId = touchId == null ? null : touchId;
+    drag.w = r.width; drag.h = r.height; drag.x = x; drag.y = y;
+    drag.off = kind === 'touch' ? -(r.height / 2 + 26) : 0;
+    drag.armTop = false; drag.armBottom = false;
+    document.body.classList.add('dragging');
+    place(); hit(); sfx.pick();
+    drag.raf = requestAnimationFrame(scrollLoop);
+  }
+  function moveDrag(x, y) { drag.x = x; drag.y = y; place(); hit(); }
+  function endDragState() {
+    drag.active = false;
+    cancelAnimationFrame(drag.raf);
+    if (drag.over) drag.over.classList.remove('is-over');
+    drag.over = null; drag.overBuffet = false;
+    $('#buffet').classList.remove('is-over');
+    document.body.classList.remove('dragging');
+    $$('.chip.is-lifted').forEach(function (c) { c.classList.remove('is-lifted'); });
+    $$('.seat.is-lifted-seat').forEach(function (c) { c.classList.remove('is-lifted-seat'); });
+    var g = drag.ghost; drag.ghost = null;
+    return g;
+  }
+  function flyHome(ghost, home) {
+    if (!ghost) return;
+    if (reduceMotion || !ghost.animate || !home) { ghost.remove(); return; }
+    var a = ghost.animate(
+      [{ transform: ghost.style.transform, opacity: 1 }, { transform: 'translate(' + home.left + 'px,' + home.top + 'px) rotate(0deg) scale(1)', opacity: 0.3 }],
+      { duration: 220, easing: 'ease-in' });
+    a.onfinish = function () { ghost.remove(); };
+  }
+  function finishDrag() {
+    var seat = drag.over, back = drag.overBuffet, id = drag.id, home = drag.home, what = drag.what;
+    var gid = seat ? seat.getAttribute('data-guest') : null;
+    var ghost = endDragState();
+    if (what === 'seat') {
+      /* the name that was dragged joins the seat it was dropped on */
+      if (gid && gid !== id) { if (ghost) ghost.remove(); mergeSeats(gid, id); }
+      else flyHome(ghost, home);
+      return;
+    }
+    if (gid) { if (ghost) ghost.remove(); give(id, gid); }
+    else if (back) { if (ghost) ghost.remove(); putBack(id); }
+    else flyHome(ghost, home);
+  }
+  function cancelDrag() { if (!drag.active) return; var home = drag.home; flyHome(endDragState(), home); }
+
+  function bindDrag() {
+    /* mouse and pen */
+    document.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'touch' || e.button !== 0 || drag.active) return;
+      var p = pendingFrom(e.target); if (!p) return;
+      p.mouse = true; p.x = e.clientX; p.y = e.clientY;
+      drag.pending = p;
+    });
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      if (drag.active && drag.kind === 'mouse') {
+        if (e.buttons === 0) { finishDrag(); return; }
+        moveDrag(e.clientX, e.clientY); return;
+      }
+      var p = drag.pending;
+      if (p && p.mouse) {
+        if (e.buttons === 0) { drag.pending = null; return; }
+        var dx = e.clientX - p.x, dy = e.clientY - p.y;
+        if (dx * dx + dy * dy > 36) { drag.pending = null; startDrag(p.id, p.el, e.clientX, e.clientY, 'mouse', null, p.what); }
+      }
+    });
+    document.addEventListener('pointerup', function (e) {
+      if (e.pointerType === 'touch') return;
+      if (drag.active && drag.kind === 'mouse') { suppressClickUntil = Date.now() + 60; drag.x = e.clientX; drag.y = e.clientY; hit(); finishDrag(); }
+      if (drag.pending && drag.pending.mouse) drag.pending = null;
+    });
+    document.addEventListener('pointercancel', function (e) {
+      if (e.pointerType === 'touch') return;
+      cancelDrag(); if (drag.pending && drag.pending.mouse) drag.pending = null;
+    });
+
+    /* touch: hold, then drag */
+    function touchById(list, id) { for (var i = 0; i < list.length; i++) if (list[i].identifier === id) return list[i]; return null; }
+    document.addEventListener('touchstart', function (e) {
+      if (drag.active) return;
+      cancelPending();
+      if (e.touches.length !== 1) return;
+      var p = pendingFrom(e.target); if (!p) return;
+      var t = e.touches[0];
+      p.touch = true; p.x = t.clientX; p.y = t.clientY; p.touchId = t.identifier; p.timer = 0;
+      p.timer = setTimeout(function () {
+        if (drag.pending !== p) return;
+        drag.pending = null;
+        startDrag(p.id, p.el, p.x, p.y, 'touch', p.touchId, p.what);
+        try { if (navigator.vibrate) navigator.vibrate(12); } catch (err) { /* ignore */ }
+      }, 240);
+      drag.pending = p;
+    }, { passive: true });
+    document.addEventListener('touchmove', function (e) {
+      if (drag.active && drag.kind === 'touch') {
+        if (e.cancelable) e.preventDefault();
+        var t = touchById(e.touches, drag.touchId);
+        if (t) moveDrag(t.clientX, t.clientY);
+        return;
+      }
+      var p = drag.pending;
+      if (p && p.touch) {
+        var m = touchById(e.touches, p.touchId);
+        if (!m) { cancelPending(); return; }
+        var dx = m.clientX - p.x, dy = m.clientY - p.y;
+        if (dx * dx + dy * dy > 100) cancelPending();
+      }
+    }, { passive: false });
+    document.addEventListener('touchend', function (e) {
+      if (drag.active && drag.kind === 'touch') {
+        var t = touchById(e.changedTouches, drag.touchId);
+        if (!t && touchById(e.touches, drag.touchId)) return;
+        if (e.cancelable) e.preventDefault();
+        suppressClickUntil = Date.now() + 350;
+        if (t) { drag.x = t.clientX; drag.y = t.clientY; hit(); }
+        finishDrag();
+        return;
+      }
+      cancelPending();
+    }, { passive: false });
+    document.addEventListener('touchcancel', function () {
+      if (drag.active && drag.kind === 'touch') cancelDrag();
+      cancelPending();
+    });
+
+    document.addEventListener('contextmenu', function (e) { if (chipFrom(e.target) || (e.target.closest && e.target.closest('.seat-main'))) e.preventDefault(); });
+    document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    window.addEventListener('blur', function () { cancelDrag(); cancelPending(); });
+  }
+
+  /* =====================================================================
+     Clicks and keys
+     ===================================================================== */
+  function act(name, el) {
+    var id, g, d;
+    switch (name) {
+      case 'bell':
+        soundOn = !soundOn; prefs.sound = soundOn; lsSet(prefs); renderBell();
+        if (soundOn) sfx.drop();
+        break;
+      case 'gobble': gobble(); break;
+      case 'roll': openRoll(); break;
+      case 'roll-again': spin(); break;
+      case 'roll-take':
+        id = reel.pick; closeDlg();
+        if (id && findD(work, id) && !findD(work, id).by) setHand(id);
+        break;
+      case 'add-dish': openAddDish(); break;
+      case 'dish-ok': submitDish(); break;
+      case 'add-guest': openAddGuest(); break;
+      case 'guest-ok': submitGuest(); break;
+      case 'emoji':
+        $$('.emoji-btn', dlg).forEach(function (b) { b.setAttribute('aria-checked', b === el ? 'true' : 'false'); });
+        break;
+      case 'toggle-buffet': buffetOpen = !buffetOpen; renderBuffetHead(); syncSpace(); break;
+      case 'seat': openSeat(el.closest('.seat').getAttribute('data-guest')); break;
+      case 'seat-back': id = el.getAttribute('data-d'); closeDlg(); putBack(id); break;
+      case 'seat-ok':
+        g = findG(work, el.getAttribute('data-g'));
+        if (!g) { closeDlg(); break; }
+        if (applySeatForm(g)) { closeDlg(); changed({}); }
+        break;
+      case 'seat-split':
+        g = findG(work, el.getAttribute('data-g'));
+        if (!g) { closeDlg(); break; }
+        if (applySeatForm(g)) { closeDlg(); splitSeat(g.id, +el.getAttribute('data-i')); }
+        break;
+      case 'seat-join':
+        g = findG(work, el.getAttribute('data-g')); id = ($('#f-join', dlg) || {}).value;
+        if (!g) { closeDlg(); break; }
+        if (!id) { showErr('Choose who to seat them with.'); break; }
+        if (applySeatForm(g)) { closeDlg(); mergeSeats(g.id, id); }
+        break;
+      case 'seat-remove':
+        if (el.getAttribute('data-sure') !== '1') { el.setAttribute('data-sure', '1'); el.textContent = 'Really remove?'; break; }
+        id = el.getAttribute('data-g'); g = findG(work, id);
+        if (g) {
+          work.guests = work.guests.filter(function (x) { return x.id !== id; });
+          work.dishes.forEach(function (x) { if (x.by === id) x.by = null; });
+          closeDlg(); changed({ back: true });
+          toast(g.name + ' has left the table.');
+        } else closeDlg();
+        break;
+      case 'put-back': if (hand) putBack(hand); break;
+      case 'del-dish':
+        d = hand ? findD(work, hand) : null;
+        if (d && d.custom && !d.by) {
+          work.dishes = work.dishes.filter(function (x) { return x.id !== d.id; });
+          changed({ back: true });
+          toast(d.emoji + ' ' + d.name + ' is off the list.');
+        }
+        break;
+      case 'cancel-hand': setHand(null); break;
+      case 'save': save(); break;
+      case 'discard': discard(); break;
+      case 'copy-picks': copyText(picksText(), 'Copied. Paste it in the group chat.'); break;
+      case 'copy-menu': copyText(menuText(), 'Menu copied.'); break;
+      case 'select-all': d = $('#copybox', dlg); if (d) { d.focus(); d.select(); } break;
+      case 'dlg-close': closeDlg(); break;
+    }
+  }
+
+  function bindUi() {
+    document.addEventListener('click', function (e) {
+      if (Date.now() < suppressClickUntil) { e.preventDefault(); e.stopPropagation(); return; }
+    }, true);
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      if (t === dlg) { closeDlg(); return; }
+      var seat = t.closest('.seat'), chip = chipFrom(t);
+      if (hand && seat) {
+        if (chip && chip.getAttribute('data-dish') === hand) { setHand(null); return; }
+        give(hand, seat.getAttribute('data-guest'), true);
+        return;
+      }
+      if (chip) { var id = chip.getAttribute('data-dish'); setHand(hand === id ? null : id); return; }
+      var a = t.closest('[data-act]');
+      if (a && !a.disabled) act(a.getAttribute('data-act'), a);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (drag.active) { cancelDrag(); return; }
+        if (hand && !dlgOpen()) setHand(null);
+        return;
+      }
+      if (e.key === 'Enter' && dlgOpen() && e.target && e.target.tagName === 'INPUT') {
+        var go = $('.btn--go', dlg);
+        if (go) { e.preventDefault(); go.click(); }
+      }
+    });
+    dlg.addEventListener('close', function () { stopReel(); dlg.innerHTML = ''; });
+    window.addEventListener('resize', syncSpace);
+    if (mqNarrow.addEventListener) mqNarrow.addEventListener('change', syncSpace);
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(syncSpace);
+      ro.observe($('#buffet')); ro.observe($('#bar'));
+    }
+  }
+
+  /* =====================================================================
+     Start
+     ===================================================================== */
+  /* A copy of this page hosted as plain files, with no Claude around it, reads the board from
+     board.json next to it. That lets the board be refreshed without replacing the page. */
+  var standalone = !window.claude && /^https?:$/.test(location.protocol);
+  function fetchBoard() {
+    return fetch('board.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (raw) { return raw && Array.isArray(raw.guests) && Array.isArray(raw.dishes) ? normalize(raw) : null; })
+      .catch(function () { return null; });
+  }
+  function refreshBoard() {
+    if (drag.active || drag.pending || hand || dlgOpen()) return;
+    fetchBoard().then(function (next) {
+      if (!next || JSON.stringify(next) === JSON.stringify(BASE)) return;
+      if (drag.active || hand || dlgOpen()) return;
+      var lost = rebase(next, ops);
+      stashNow();
+      var k = $('.kicker'), w = $('.when');
+      if (k) k.textContent = BASE.event.kicker;
+      if (w) w.textContent = BASE.event.line;
+      renderAll();
+      lost.forEach(function (n) { toast(n, 5600); });
+      toast('The board was just updated.');
+    });
+  }
+
+  var begun = false;
+  function begin() {
+    if (begun) return;
+    begun = true;
+    root.innerHTML = shellHtml();
+    dlg = $('#dlg');
+    renderAll(); renderMode(); renderBell(); renderCountdown();
+    setInterval(renderCountdown, 1000);
+    bindDrag(); bindUi();
+    resolveMode();
+
+    var now = Date.now();
+    function recent(t) { return typeof t === 'number' && now - t < 20000; }
+    if (typeof stash.y === 'number' && (recent(stash.saved) || recent(stash.conflict))) {
+      try { window.scrollTo(0, stash.y); } catch (e) { /* ignore */ }
+    }
+    if (recent(stash.saved) && !ops.length) { toast('Saved for everyone.'); setTimeout(function () { rain(16); }, 150); }
+    else if (recent(stash.conflict) && ops.length) { afterConflict = true; renderBar(); toast('Someone else saved at the same moment. Your changes are still here.', 5200); }
+    notices.forEach(function (n) { toast(n, 5600); });
+    if (!stash.seen) { document.body.classList.add('intro'); setTimeout(gust, 250); }
+    stashNow();
+  }
+
+  if (standalone) {
+    /* show the built-in board if board.json is slow or missing; a late answer is picked up by the refresh */
+    setTimeout(begin, 2500);
+    fetchBoard().then(function (next) {
+      if (next && !begun) notices = rebase(next, stash.ops);
+      begin();
+    });
+    setInterval(refreshBoard, 5000);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden && begun) refreshBoard(); });
+  } else {
+    begin();
+  }
+})();
+</script>
+</body>
+</html>
