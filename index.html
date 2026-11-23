@@ -1091,7 +1091,7 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
   function renderMode() {
     var el = $('#mode'); if (!el) return;
     if (mode === 'guest') { el.hidden = false; el.textContent = 'View only: your moves stay on your screen'; }
-    else if (mode === 'writer') { el.hidden = false; el.textContent = 'You can edit this board'; }
+    else if (mode === 'writer') { el.hidden = false; el.textContent = remote ? 'Anyone with this link can edit. Changes save by themselves.' : 'You can edit this board'; }
     else el.hidden = true;
   }
   function renderBell() {
@@ -1504,7 +1504,14 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
   /* =====================================================================
      Saving. Whoever can edit the page saves the whole board back into it.
      ===================================================================== */
-  var AUTO_MS = 8000;
+  /* Shared board. Set DB_URL to a Firebase Realtime Database address, for example
+     https://my-project-default-rtdb.europe-west1.firebasedatabase.app
+     and everyone who opens the page can edit: changes save by themselves and other open pages
+     pick them up within a few seconds. Left empty, the page is view-only and reads board.json. */
+  var DB_URL = '';
+  var remote = !window.claude && /^https:\/\/[a-z0-9.-]+$/i.test(DB_URL) ? DB_URL + '/board.json' : '';
+  var POLL_MS = remote ? 3000 : 5000;
+  var AUTO_MS = remote ? 1200 : 8000;
   var auto = { on: false, left: 0, last: 0, t: 0, paused: false };
   var READ_ONLY = { not_writer: 1, not_granted: 1, not_declared: 1, capability_disabled: 1, capability_removed: 1, consent_required: 1 };
 
@@ -1515,7 +1522,7 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
   function busy() { return drag.active || !!drag.pending || !!hand || dlgOpen() || isTyping(); }
   function autoText() { return auto.paused ? 'Saves when you’re done.' : 'Saving in ' + Math.max(1, Math.ceil(auto.left / 1000)) + '…'; }
   function armAuto() {
-    if (mode !== 'writer' || !ops.length || !artifactNs) { disarmAuto(); renderBar(); return; }
+    if (mode !== 'writer' || !ops.length || !(artifactNs || remote)) { disarmAuto(); renderBar(); return; }
     auto.on = true; auto.left = AUTO_MS; auto.last = Date.now(); auto.paused = false;
     if (!auto.t) auto.t = setInterval(tickAuto, 200);
     renderBar();
@@ -1526,7 +1533,7 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
     if (!auto.on || saving) return;
     var el = $('#auto-txt');
     if (busy()) {
-      auto.paused = true; auto.left = Math.max(auto.left, 3000);
+      auto.paused = true; auto.left = Math.max(auto.left, remote ? 800 : 3000);
       if (el) el.textContent = autoText();
       return;
     }
@@ -1545,6 +1552,7 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
 
   function save() {
     if (saving || !ops.length) return;
+    if (remote && mode === 'writer') { saveRemote(0); return; }
     if (mode !== 'writer' || !artifactNs) { renderBar(); return; }
     saving = true; saveError = ''; disarmAuto(); renderBar();
     var next = clone(work);
@@ -1584,6 +1592,53 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
     attempt(0);
   }
 
+  /* Shared board: write the whole board with the next revision number. The database only accepts
+     a revision exactly one higher than the one it holds, so two people saving at the same moment
+     cannot overwrite each other: the second one is refused, loads the first one's board, replays
+     its own changes on top and saves again. */
+  function putBoard(next) {
+    return fetch(remote, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rev: next.rev, json: JSON.stringify(next) })
+    }).then(function (r) { return r.status; }, function () { return 0; });
+  }
+  function saveRemote(tries) {
+    if (!ops.length) { saving = false; renderBar(); return; }
+    saving = true; saveError = ''; disarmAuto(); renderBar();
+    var next = clone(work);
+    next.rev = (BASE.rev || 0) + 1;
+    next.updated = new Date().toISOString();
+    function fail(msg) { saving = false; saveError = msg; stashNow(); renderBar(); }
+    putBoard(next).then(function (status) {
+      if (status >= 200 && status < 300) {
+        /* keep anything done while the save was on its way */
+        var nb = normalize(next);
+        rebase(nb, canonicalOps(nb, work));
+        saving = false; saveError = ''; afterConflict = false; dirty = ops.length > 0;
+        stashNow(); renderAll();
+        if (ops.length) armAuto();
+        return;
+      }
+      if (status === 401 || status === 403) {
+        /* refused: most likely someone saved first */
+        fetchBoard().then(function (theirs) {
+          if (theirs && theirs.rev !== BASE.rev && tries < 5) {
+            var lost = rebase(theirs, canonicalOps(BASE, work));
+            stashNow(); renderAll();
+            lost.forEach(function (n) { toast(n, 5600); });
+            setTimeout(function () { saveRemote(tries + 1); }, 150 + Math.random() * 500);
+            return;
+          }
+          fail('Could not save that. Try again in a moment.');
+        });
+        return;
+      }
+      if (tries < 2) { setTimeout(function () { saveRemote(tries + 1); }, 700 + Math.random() * 900); return; }
+      fail('Could not save just now. Check your connection, then save again.');
+    });
+  }
+
   function safeUse(name) {
     try { return Promise.resolve(window.claude.use(name)).then(function (v) { return v || null; }, function () { return null; }); }
     catch (e) { return Promise.resolve(null); }
@@ -1595,6 +1650,7 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
   }
   function resolveMode() {
     var c = window.claude;
+    if (remote) { setMode('writer'); return; }
     if (!c || typeof c.use !== 'function') { setMode('guest'); return; }
     Promise.all([safeUse('artifact'), safeUse('user')]).then(function (r) {
       var art = r[0], usr = r[1];
@@ -1927,16 +1983,22 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
      board.json next to it. That lets the board be refreshed without replacing the page. */
   var standalone = !window.claude && /^https?:$/.test(location.protocol);
   function fetchBoard() {
-    return fetch('board.json?t=' + Date.now(), { cache: 'no-store' })
+    return fetch(remote || 'board.json?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (raw) {
+        if (!remote || !raw) return raw;
+        /* the shared board is kept as one piece of text next to its revision number */
+        var b = JSON.parse(raw.json); b.rev = raw.rev; return b;
+      })
       .then(function (raw) { return raw && Array.isArray(raw.guests) && Array.isArray(raw.dishes) ? normalize(raw) : null; })
       .catch(function () { return null; });
   }
   function refreshBoard() {
-    if (drag.active || drag.pending || hand || dlgOpen()) return;
+    if (saving || drag.active || drag.pending || hand || dlgOpen()) return;
     fetchBoard().then(function (next) {
       if (!next || JSON.stringify(next) === JSON.stringify(BASE)) return;
-      if (drag.active || hand || dlgOpen()) return;
+      if (remote && next.rev <= BASE.rev) return;
+      if (saving || drag.active || hand || dlgOpen()) return;
       var lost = rebase(next, ops);
       stashNow();
       var k = $('.kicker'), w = $('.when');
@@ -1944,7 +2006,8 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
       if (w) w.textContent = BASE.event.line;
       renderAll();
       lost.forEach(function (n) { toast(n, 5600); });
-      toast('The board was just updated.');
+      if (!remote) toast('The board was just updated.');
+      if (remote && mode === 'writer' && ops.length) armAuto();
     });
   }
 
@@ -1978,7 +2041,7 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
       if (next && !begun) notices = rebase(next, stash.ops);
       begin();
     });
-    setInterval(refreshBoard, 5000);
+    setInterval(refreshBoard, POLL_MS);
     document.addEventListener('visibilitychange', function () { if (!document.hidden && begun) refreshBoard(); });
   } else {
     begin();
