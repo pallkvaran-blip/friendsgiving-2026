@@ -14,7 +14,7 @@ GitHub Pages serves the `gh-pages` branch. Keep it in step with `main`:
 GitHub Pages only serves files, so edits are kept in a Firebase Realtime Database.
 In `index.html`, set `DB_URL` to the database address, for example
 
-    var DB_URL = 'https://my-project-default-rtdb.europe-west1.firebasedatabase.app';
+    var DB_URL = 'https://friendsgiving-5cff6-default-rtdb.firebaseio.com';
 
 With it set, anyone who opens the page can edit. Changes save by themselves about a second
 after each edit, and every open page re-reads the board every 3 seconds. With `DB_URL` empty

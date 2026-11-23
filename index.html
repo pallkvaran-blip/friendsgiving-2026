@@ -1508,7 +1508,7 @@ body.has-hand .seat:hover { transform: translateY(-3px) scale(1.02); }
      https://my-project-default-rtdb.europe-west1.firebasedatabase.app
      and everyone who opens the page can edit: changes save by themselves and other open pages
      pick them up within a few seconds. Left empty, the page is view-only and reads board.json. */
-  var DB_URL = '';
+  var DB_URL = 'https://friendsgiving-5cff6-default-rtdb.firebaseio.com';
   var remote = !window.claude && /^https:\/\/[a-z0-9.-]+$/i.test(DB_URL) ? DB_URL + '/board.json' : '';
   var POLL_MS = remote ? 3000 : 5000;
   var AUTO_MS = remote ? 1200 : 8000;
